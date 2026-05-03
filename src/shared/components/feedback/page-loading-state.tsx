@@ -20,7 +20,7 @@ function DefaultSkeleton() {
 
 function DashboardSkeleton() {
   return (
-    <div className="mt-10 grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+    <div className="mt-8 grid gap-6 lg:mt-10 lg:grid-cols-[360px_minmax(0,1fr)]">
       <Card className="p-6">
         <SkeletonBlock className="size-16 rounded-full" />
         <SkeletonBlock className="mt-6 h-8 w-48" />
@@ -62,7 +62,7 @@ function CatalogSkeleton() {
 
 function DetailSkeleton() {
   return (
-    <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
+    <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
       <div>
         <SkeletonBlock className="h-[520px]" />
 
@@ -86,7 +86,7 @@ function DetailSkeleton() {
 
 function FormSkeleton() {
   return (
-    <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_390px]">
+    <div className="mt-8 grid gap-6 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_390px]">
       <div className="space-y-6">
         {Array.from({ length: 3 }).map((_, index) => (
           <Card key={index} className="p-6">

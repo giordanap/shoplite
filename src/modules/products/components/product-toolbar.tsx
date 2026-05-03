@@ -39,7 +39,9 @@ const sortOptions: Array<{
 ];
 
 function getSortOptionLabel(value: SortOptionValue): string {
-  return sortOptions.find((option) => option.value === value)?.label ?? "Recommended";
+  return (
+    sortOptions.find((option) => option.value === value)?.label ?? "Recommended"
+  );
 }
 
 type ProductToolbarProps = {
@@ -153,11 +155,12 @@ export function ProductToolbar({
           </div>
 
           <p className="mt-3 text-sm text-muted-foreground">
-            Search, category, sorting and pagination are synchronized with the URL.
+            Search, category, sorting and pagination are synchronized with the
+            URL.
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_220px] xl:w-[700px]">
+        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] lg:grid-cols-[minmax(0,1fr)_auto_220px] xl:w-[700px]">
           <Input
             ref={inputRef}
             key={search}
@@ -176,7 +179,7 @@ export function ProductToolbar({
             Clear
           </Button>
 
-          <div ref={sortMenuRef} className="relative">
+          <div ref={sortMenuRef} className="relative sm:col-span-2 lg:col-span-1">
             <button
               type="button"
               className="flex h-11 w-full items-center justify-between gap-3 rounded-button border border-border-subtle bg-white/[0.04] px-4 text-left text-sm font-bold text-foreground shadow-[0_0_24px_rgba(0,229,255,0.08)] outline-none transition duration-200 hover:border-secondary/50 hover:bg-secondary/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
@@ -231,7 +234,9 @@ export function ProductToolbar({
                       <span>{option.label}</span>
 
                       {isSelected ? (
-                        <span className="text-xs font-black text-secondary">✓</span>
+                        <span className="text-xs font-black text-secondary">
+                          ✓
+                        </span>
                       ) : null}
                     </button>
                   );

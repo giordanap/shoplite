@@ -60,7 +60,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const galleryImages =
     product.images.length > 0 ? product.images.slice(0, 4) : [product.thumbnail];
 
-    return (
+  return (
     <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric">
       <div className="aetheric-grid pointer-events-none absolute inset-0 opacity-30" />
 
@@ -81,10 +81,10 @@ export function ProductDetail({ product }: ProductDetailProps) {
           </Badge>
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)]">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(360px,0.95fr)] lg:gap-10">
           <div>
             <Card className="overflow-hidden p-4">
-              <div className="relative grid min-h-[420px] place-items-center overflow-hidden rounded-card border border-border-subtle bg-card-gradient">
+              <div className="relative grid min-h-[320px] place-items-center overflow-hidden rounded-card border border-border-subtle bg-card-gradient sm:min-h-[420px]">
                 {hasDiscount ? (
                   <Badge
                     variant="accent"
@@ -130,7 +130,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
           <div>
             <Badge variant="primary">Live product detail</Badge>
 
-            <h1 className="mt-6 font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            <h1 className="mt-6 font-display text-3xl font-bold tracking-tight text-foreground sm:text-5xl">
               {product.name}
             </h1>
 
@@ -189,7 +189,7 @@ export function ProductDetail({ product }: ProductDetailProps) {
               </Card>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
               <AddToCartButton product={product} />
 
               <FavoriteToggleButton product={product} />

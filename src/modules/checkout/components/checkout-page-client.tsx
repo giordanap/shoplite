@@ -11,7 +11,6 @@ import { getCartTotals, useCartStore } from "@/modules/cart/store";
 import { routes } from "@/core/router";
 import type { CartItem } from "@/modules/cart/types";
 
-
 type DeliveryMethod = "standard" | "express";
 
 type CheckoutFormState = {
@@ -164,7 +163,7 @@ export function CheckoutPageClient() {
         </div>
 
         <form
-          className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_390px]"
+          className="mt-8 grid gap-6 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_390px]"
           onSubmit={handleSubmit}
         >
           <section className="space-y-6" aria-label="Checkout form">
@@ -311,7 +310,7 @@ export function CheckoutPageClient() {
                   type="button"
                   aria-pressed={formState.deliveryMethod === "standard"}
                   onClick={() => updateFormField("deliveryMethod", "standard")}
-                  className={`rounded-card border p-5 text-left transition duration-200 ${
+                  className={`rounded-card border p-4 text-left transition duration-200 sm:p-5 ${
                     formState.deliveryMethod === "standard"
                       ? "border-secondary/50 bg-secondary/10 shadow-[0_0_28px_rgba(0,229,255,0.12)]"
                       : "border-border-subtle bg-white/[0.03] hover:border-border-strong hover:bg-white/[0.06]"
@@ -340,7 +339,7 @@ export function CheckoutPageClient() {
                   type="button"
                   aria-pressed={formState.deliveryMethod === "express"}
                   onClick={() => updateFormField("deliveryMethod", "express")}
-                  className={`rounded-card border p-5 text-left transition duration-200 ${
+                  className={`rounded-card border p-4 text-left transition duration-200 sm:p-5 ${
                     formState.deliveryMethod === "express"
                       ? "border-primary/50 bg-primary/10 shadow-[0_0_28px_rgba(124,58,237,0.18)]"
                       : "border-border-subtle bg-white/[0.03] hover:border-border-strong hover:bg-white/[0.06]"

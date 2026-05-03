@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 27: loading skeletons and refined states.
+Commit 28: responsive mobile experience.
 
 ## Deployment
 
@@ -620,7 +620,30 @@ Important UX rule:
 
   * Loading states should preserve the expected page shape so transitions feel stable.
 
+## Responsive mobile experience
+
+The app now includes a more polished mobile experience across the main commerce flow.
+
+Responsive behavior added:
+
+  * Header uses a real mobile menu instead of a passive horizontal nav
+  * Container spacing is tighter on small screens
+  * Product toolbar stacks search, clear and sorting controls better
+  * Product cards avoid cramped two-column buttons on very small devices
+  * Product detail reduces hero height and title size on mobile
+  * Cart quantity controls become easier to tap on mobile
+  * Checkout spacing and delivery cards are refined for small screens
+  * Account dashboard stats use 2 columns on tablet and 4 columns on desktop
+  * Loading skeleton spacing is refined for mobile layouts
+
+Responsive targets:
+
+  * Mobile: 360px+
+  * Small mobile / large phone: 420px+
+  * Tablet: 640px+
+  * Desktop: 1024px+
+
 ## Upcoming steps
 
-1. Add final responsive polish
+1. Add final UI polish
 2. Add portfolio README final documentation
