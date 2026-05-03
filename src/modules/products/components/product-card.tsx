@@ -1,4 +1,7 @@
+"use client";
+
 import { routes } from "@/core/router/routes";
+import { AddToCartButton } from "@/modules/cart/components";
 import { Badge, ButtonLink, Card } from "@/shared/components/ui";
 
 import type { Product } from "../types";
@@ -83,29 +86,37 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
 
-        <div className="mt-6 flex items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-              Price
+        <div className="mt-6">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+            Price
+          </p>
+
+          <div className="mt-1 flex flex-wrap items-baseline gap-2">
+            <p className="font-display text-2xl font-bold text-foreground">
+              {formatCurrency(product.discountedPrice)}
             </p>
 
-            <div className="mt-1 flex flex-wrap items-baseline gap-2">
-              <p className="font-display text-2xl font-bold text-foreground">
-                {formatCurrency(product.discountedPrice)}
+            {hasDiscount ? (
+              <p className="text-sm text-muted-foreground line-through">
+                {formatCurrency(product.price)}
               </p>
-
-              {hasDiscount ? (
-                <p className="text-sm text-muted-foreground line-through">
-                  {formatCurrency(product.price)}
-                </p>
-              ) : null}
-            </div>
+            ) : null}
           </div>
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          <AddToCartButton
+            product={product}
+            compact
+            size="sm"
+            className="w-full"
+          />
 
           <ButtonLink
             href={routes.productDetail(product.id)}
             variant="outline"
             size="sm"
+            className="w-full"
           >
             Details
           </ButtonLink>
