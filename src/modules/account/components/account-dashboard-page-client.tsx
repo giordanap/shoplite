@@ -4,7 +4,9 @@ import { useMemo, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 
 import { routes } from "@/core/router";
+import { useAuthStore } from "@/modules/auth/store";
 import { getCartTotals, useCartStore } from "@/modules/cart/store";
+import { useFavoritesStore } from "@/modules/favorites/store";
 import {
   getLocalOrdersFromSnapshot,
   getLocalOrdersServerSnapshot,
@@ -15,8 +17,6 @@ import {
 import { EmptyPageState } from "@/shared/components/feedback";
 import { Container, SectionHeader } from "@/shared/components/layout";
 import { Badge, Button, ButtonLink, Card } from "@/shared/components/ui";
-
-import { useAuthStore } from "@/modules/auth/store";
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -53,6 +53,10 @@ export function AccountDashboardPageClient() {
 
   const cartItems = useCartStore((state) => state.items);
   const cartTotals = useMemo(() => getCartTotals(cartItems), [cartItems]);
+
+  const favoriteItems = useFavoritesStore((state) => state.items);
+  const removeFavorite = useFavoritesStore((state) => state.removeFavorite);
+  const favoritesCount = favoriteItems.length;
 
   const ordersSnapshot = useSyncExternalStore(
     subscribeToLocalOrders,
@@ -110,6 +114,7 @@ export function AccountDashboardPageClient() {
             <Badge variant="primary">Demo session</Badge>
             <Badge variant="secondary">{orders.length} orders</Badge>
             <Badge variant="muted">{cartTotals.itemCount} cart items</Badge>
+            <Badge variant="accent">{favoritesCount} favorites</Badge>
           </div>
         </div>
 
@@ -170,7 +175,11 @@ export function AccountDashboardPageClient() {
                     Continue shopping
                   </ButtonLink>
 
-                  <Button variant="danger" className="w-full" onClick={handleLogout}>
+                  <Button
+                    variant="danger"
+                    className="w-full"
+                    onClick={handleLogout}
+                  >
                     Logout
                   </Button>
                 </div>
@@ -188,7 +197,7 @@ export function AccountDashboardPageClient() {
           </aside>
 
           <section className="space-y-6">
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-4">
               <Card variant="subtle">
                 <Badge variant="secondary">Cart</Badge>
 
@@ -210,6 +219,18 @@ export function AccountDashboardPageClient() {
 
                 <p className="mt-2 text-sm text-muted-foreground">
                   Local demo orders created from checkout.
+                </p>
+              </Card>
+
+              <Card variant="subtle">
+                <Badge variant="secondary">Wishlist</Badge>
+
+                <p className="mt-4 font-display text-3xl font-bold text-foreground">
+                  {favoritesCount}
+                </p>
+
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Products saved to your persistent wishlist.
                 </p>
               </Card>
 
@@ -298,7 +319,94 @@ export function AccountDashboardPageClient() {
                     </h3>
 
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      Complete the checkout demo to create your first local order.
+                      Complete the checkout demo to create your first local
+                      order.
+                    </p>
+
+                    <ButtonLink href={routes.products} className="mt-6">
+                      Explore products
+                    </ButtonLink>
+                  </div>
+                </div>
+              )}
+            </Card>
+
+            <Card className="p-0">
+              <div className="flex flex-col gap-4 border-b border-border-subtle p-6 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <Badge variant="accent">Wishlist</Badge>
+
+                  <h2 className="mt-4 font-display text-2xl font-bold text-foreground">
+                    Saved favorites
+                  </h2>
+                </div>
+
+                <ButtonLink href={routes.products} variant="outline" size="sm">
+                  Discover more
+                </ButtonLink>
+              </div>
+
+              {favoriteItems.length > 0 ? (
+                <div className="divide-y divide-border-subtle">
+                  {favoriteItems.slice(0, 3).map((item) => (
+                    <article
+                      key={item.product.id}
+                      className="grid gap-4 p-5 sm:grid-cols-[72px_minmax(0,1fr)_auto]"
+                    >
+                      <div className="grid aspect-square place-items-center overflow-hidden rounded-card border border-border-subtle bg-card-gradient">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={item.product.thumbnail.url}
+                          alt={item.product.thumbnail.alt}
+                          className="h-full w-full object-contain p-2"
+                        />
+                      </div>
+
+                      <div className="min-w-0">
+                        <Badge variant="secondary">
+                          {item.product.categoryName}
+                        </Badge>
+
+                        <h3 className="mt-3 truncate font-display text-lg font-bold text-foreground">
+                          {item.product.name}
+                        </h3>
+
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          Rating:{" "}
+                          <span className="font-bold text-warning">
+                            ★ {item.product.rating.toFixed(1)}
+                          </span>
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 sm:justify-end">
+                        <ButtonLink
+                          href={routes.productDetail(item.product.id)}
+                          variant="outline"
+                          size="sm"
+                        >
+                          View
+                        </ButtonLink>
+
+                        <Button
+                          variant="danger"
+                          size="sm"
+                          onClick={() => removeFavorite(item.product.id)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-6">
+                  <div className="rounded-card border border-border-subtle bg-white/[0.03] p-6">
+                    <Badge variant="muted">No favorites yet</Badge>
+
+                    <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                      Save products from the catalog or product detail page to
+                      build your wishlist.
                     </p>
 
                     <ButtonLink href={routes.products} className="mt-6">
@@ -341,7 +449,9 @@ export function AccountDashboardPageClient() {
                       </div>
 
                       <div className="min-w-0">
-                        <Badge variant="secondary">{item.product.categoryName}</Badge>
+                        <Badge variant="secondary">
+                          {item.product.categoryName}
+                        </Badge>
 
                         <h3 className="mt-3 truncate font-display text-lg font-bold text-foreground">
                           {item.product.name}
@@ -356,7 +466,9 @@ export function AccountDashboardPageClient() {
                       </div>
 
                       <p className="font-display text-xl font-bold text-foreground sm:text-right">
-                        {formatCurrency(item.product.discountedPrice * item.quantity)}
+                        {formatCurrency(
+                          item.product.discountedPrice * item.quantity,
+                        )}
                       </p>
                     </article>
                   ))}
@@ -367,7 +479,8 @@ export function AccountDashboardPageClient() {
                     <Badge variant="muted">Empty cart</Badge>
 
                     <p className="mt-4 text-sm leading-6 text-muted-foreground">
-                      Add products to see a live cart preview inside your account.
+                      Add products to see a live cart preview inside your
+                      account.
                     </p>
                   </div>
                 </div>

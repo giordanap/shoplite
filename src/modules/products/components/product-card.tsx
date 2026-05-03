@@ -1,8 +1,9 @@
 "use client";
 
-import { routes } from "@/core/router/routes";
 import { AddToCartButton } from "@/modules/cart/components";
 import { Badge, ButtonLink, Card } from "@/shared/components/ui";
+import { FavoriteToggleButton } from "@/modules/favorites/components";
+import { routes } from "@/core/router/routes";
 
 import type { Product } from "../types";
 
@@ -57,6 +58,10 @@ export function ProductCard({ product }: ProductCardProps) {
         >
           {getAvailabilityLabel(product.availabilityStatus)}
         </Badge>
+
+        <div className="absolute bottom-4 right-4 z-10">
+          <FavoriteToggleButton product={product} compact />
+        </div>
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
