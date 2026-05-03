@@ -5,6 +5,7 @@ import { Container } from "@/shared/components/layout";
 import { routes } from "@/core/router/routes";
 
 import { AddToCartButton } from "@/modules/cart/components";
+import { FavoriteToggleButton } from "@/modules/favorites/components";
 import type { Product } from "../types";
 
 type ProductDetailProps = {
@@ -190,6 +191,9 @@ export function ProductDetail({ product }: ProductDetailProps) {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <AddToCartButton product={product} />
+
+              <FavoriteToggleButton product={product} />
+
               <ButtonLink href={routes.cart} variant="outline">
                 Cart preview
               </ButtonLink>

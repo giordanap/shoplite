@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 25: client-side guards.
+Commit 26: favorites wishlist state.
 
 ## Deployment
 
@@ -574,7 +574,31 @@ Important Zustand rule:
   * Cart totals are still computed with `getCartTotals(items)` + `useMemo`
   * Avoid selectors that return new objects on every render
 
+## Favorites wishlist state
+
+The app now includes a persistent wishlist powered by Zustand.
+
+Wishlist behavior:
+
+  * Persists favorite products under `shoplite-favorites-v1`
+  * Stores lightweight product snapshots instead of full API responses
+  * Allows toggling favorites from product cards
+  * Allows toggling favorites from product detail
+  * Shows wishlist count and saved products in the account dashboard
+  * Allows removing favorites from the account dashboard
+
+Wishlist files:
+
+    src/modules/favorites/store/favorites.store.ts
+    src/modules/favorites/types/favorites.types.ts
+    src/modules/favorites/components/favorite-toggle-button.tsx
+
+Zustand rule:
+
+  * Select primitive values or stable references
+  * Avoid selectors that create new objects or arrays on every render
+
 ## Upcoming steps
 
-1. Polish protected route states
-2. Add final README portfolio documentation
+1. Add final responsive polish
+2. Add portfolio README final documentation
