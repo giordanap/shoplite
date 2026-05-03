@@ -19,13 +19,29 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 1: static app foundation.
+Commit 2: GitHub Pages deployment.
 
-## Upcoming steps
+## Deployment
 
-1. Add GitHub Pages deployment
-2. Add frontend architecture folders
-3. Add visual design tokens
-4. Add premium app shell
-5. Connect DummyJSON products
-6. Build catalog, cart, checkout and account flows
+This project is deployed to GitHub Pages under the `/shoplite` subpath.
+
+Production uses:
+
+```txt
+NEXT_PUBLIC_BASE_PATH=/shoplite
+```
+
+Local development uses an empty base path:
+
+```txt
+NEXT_PUBLIC_BASE_PATH=
+```
+
+Any local asset inside /public must be referenced using the withBasePath() helper instead of hardcoded root paths like /logo.svg.
+
+Upcoming steps
+1. Add frontend architecture folders
+2. Add visual design tokens
+3. Add premium app shell
+4. Connect DummyJSON products
+5. Build catalog, cart, checkout and account flows
