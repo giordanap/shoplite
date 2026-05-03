@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShopLite
 
-## Getting Started
+ShopLite is a premium frontend-only e-commerce demo built for a developer portfolio.
 
-First, run the development server:
+The project will use:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- DummyJSON API
+- Zustand
+- TanStack Query
+- Storybook
+- GitHub Pages
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Goal
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Build a modern, visually impactful e-commerce experience without backend, API keys, payment processing, or private data.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Current step
 
-## Learn More
+Commit 1: static app foundation.
 
-To learn more about Next.js, take a look at the following resources:
+## Upcoming steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Add GitHub Pages deployment
+2. Add frontend architecture folders
+3. Add visual design tokens
+4. Add premium app shell
+5. Connect DummyJSON products
+6. Build catalog, cart, checkout and account flows
