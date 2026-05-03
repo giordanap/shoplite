@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 9: DummyJSON API client foundation.
+Commit 10: product DTOs, models and mappers.
 
 ## Deployment
 
@@ -187,10 +187,36 @@ src/core/errors
 src/core/api/dummyjson
 ```
 
+## Product models and mappers
+
+The products module now separates external API DTOs from internal app models.
+
+Current product modeling pieces:
+
+- DummyJSON product DTOs
+- Internal `Product` domain model
+- Product category model
+- Product filters model
+- Product availability status
+- Product image model
+- Product review model
+- Pagination model
+- DummyJSON product mapper
+- DummyJSON products response mapper
+
+Files live in:
+
+```txt
+src/core/pagination
+src/modules/products/types
+src/modules/products/mappers
+```
+
+The UI should consume internal product models, not raw DummyJSON responses.
+
 ## Upcoming steps
 
-1. Add product DTOs, models and mappers
-2. Set up TanStack Query
-3. Fetch products from DummyJSON
-4. Build premium product catalog layout
-5. Build cart, checkout and account flows
+1. Set up TanStack Query
+2. Fetch products from DummyJSON
+3. Build premium product catalog layout
+4. Build cart, checkout and account flows
