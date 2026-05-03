@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 24: account dashboard page.
+Commit 25: client-side guards.
 
 ## Deployment
 
@@ -551,7 +551,30 @@ Important Zustand pattern:
 
 Do not use a Zustand selector that returns a new object for totals.
 
+## Client-side guards
+
+The app now includes frontend-only route guards for the demo commerce flow.
+
+Guard behavior:
+
+  * `/account` requires a local demo auth session
+  * `/checkout` requires a local demo auth session and at least one cart item
+  * `/login` redirects authenticated demo users to the account dashboard
+  * Protected routes wait for Zustand persistence hydration before deciding
+  * Checkout redirects unauthenticated users to `/login?next=/checkout`
+  * Login redirects back to the safe `next` path after demo sign-in
+
+Guard files:
+
+    src/shared/components/guards/client-route-guards.tsx
+
+Important Zustand rule:
+
+  * Guard selectors only read primitive values or stable references
+  * Cart totals are still computed with `getCartTotals(items)` + `useMemo`
+  * Avoid selectors that return new objects on every render
+
 ## Upcoming steps
 
-1. Polish account responsive states
+1. Polish protected route states
 2. Add final README portfolio documentation
