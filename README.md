@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 10: product DTOs, models and mappers.
+Commit 11: TanStack Query setup.
 
 ## Deployment
 
@@ -214,9 +214,31 @@ src/modules/products/mappers
 
 The UI should consume internal product models, not raw DummyJSON responses.
 
+## TanStack Query setup
+
+TanStack Query is now configured as the server-state layer for the app.
+
+Current query setup:
+
+- `QueryClientProvider`
+- App-level providers wrapper
+- Query client factory
+- Default query options
+- Query key registry
+- Product query keys
+- Auth query keys
+
+Files live in:
+
+```txt
+src/app/providers.tsx
+src/core/query
+```
+
+TanStack Query will be used for external API data such as products, product details, categories and demo auth.
+
 ## Upcoming steps
 
-1. Set up TanStack Query
-2. Fetch products from DummyJSON
-3. Build premium product catalog layout
-4. Build cart, checkout and account flows
+1. Fetch products from DummyJSON
+2. Build premium product catalog layout
+3. Build cart, checkout and account flows
