@@ -1,5 +1,14 @@
-import { ProductsPageClient } from "@/modules/products/components";
+import { Suspense } from "react";
+
+import {
+  ProductCatalogLoadingState,
+  ProductsPageClient,
+} from "@/modules/products/components";
 
 export default function ProductsPage() {
-  return <ProductsPageClient />;
+  return (
+    <Suspense fallback={<ProductCatalogLoadingState />}>
+      <ProductsPageClient />
+    </Suspense>
+  );
 }

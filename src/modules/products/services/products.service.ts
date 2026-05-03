@@ -22,12 +22,13 @@ export const defaultProductFilters: ProductFilters = {
   order: "asc",
 };
 
-function normalizeProductFilters(
+export function normalizeProductFilters(
   filters?: Partial<ProductFilters>,
 ): ProductFilters {
   return {
     ...defaultProductFilters,
     ...filters,
+    search: filters?.search?.trim() ?? defaultProductFilters.search,
   };
 }
 
@@ -39,14 +40,19 @@ export const productsService = {
       limit: normalizedFilters.limit,
     });
 
+    const endpoint = normalizedFilters.search
+      ? dummyJsonEndpoints.products.search
+      : dummyJsonEndpoints.products.list;
+
     const response = await dummyJsonClient.get<DummyJsonProductsResponseDto>(
-      dummyJsonEndpoints.products.list,
+      endpoint,
       {
         query: {
           limit,
           skip,
           sortBy: normalizedFilters.sortBy,
           order: normalizedFilters.order,
+          q: normalizedFilters.search || undefined,
         },
       },
     );

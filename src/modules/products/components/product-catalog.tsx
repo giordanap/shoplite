@@ -11,6 +11,10 @@ import { ProductToolbar } from "./product-toolbar";
 type ProductCatalogProps = {
   products: Product[];
   pagination: PaginationMeta;
+  search: string;
+  isFetching: boolean;
+  onSearchChange: (value: string) => void;
+  onClearSearch: () => void;
 };
 
 function getCatalogCategories(products: Product[]): ProductCategory[] {
@@ -21,24 +25,35 @@ function getCatalogCategories(products: Product[]): ProductCategory[] {
   );
 }
 
-export function ProductCatalog({ products, pagination }: ProductCatalogProps) {
+export function ProductCatalog({
+  products,
+  pagination,
+  search,
+  isFetching,
+  onSearchChange,
+  onClearSearch,
+}: ProductCatalogProps) {
   const categories = getCatalogCategories(products);
 
   return (
-    <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric">
+    <div
+      id="top"
+      className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric"
+    >
       <div className="aetheric-grid pointer-events-none absolute inset-0 opacity-30" />
 
       <Container className="relative py-20">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
             eyebrow="Premium catalog"
-            title="Explore real products with a polished shopping layout."
-            description="The catalog is now connected to DummyJSON and presented with the Stitch-inspired dark premium interface."
+            title="Explore real products with searchable URL state."
+            description="The catalog is connected to DummyJSON search and keeps the current search term in the browser URL."
           />
 
           <div className="flex flex-wrap gap-2">
             <Badge variant="secondary">{pagination.total} products</Badge>
             <Badge variant="muted">DummyJSON live data</Badge>
+            {isFetching ? <Badge variant="primary">Refreshing</Badge> : null}
           </div>
         </div>
 
@@ -53,6 +68,9 @@ export function ProductCatalog({ products, pagination }: ProductCatalogProps) {
               showing={products.length}
               page={pagination.page}
               totalPages={pagination.totalPages}
+              search={search}
+              onSearchChange={onSearchChange}
+              onClearSearch={onClearSearch}
             />
 
             <div className="mt-6 lg:hidden">
@@ -74,8 +92,8 @@ export function ProductCatalog({ products, pagination }: ProductCatalogProps) {
                     Next catalog milestone
                   </h2>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Search, URL params, category filters, sorting and real
-                    pagination behavior will be layered on top of this layout.
+                    Category filters, sorting and real pagination behavior will
+                    be layered on top of this searchable layout.
                   </p>
                 </div>
 

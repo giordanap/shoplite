@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 13: premium product catalog layout.
+Commit 14: product search and URL params.
 
 ## Deployment
 
@@ -300,10 +300,39 @@ src/modules/products/components
 
 Search, URL params, functional filters and real pagination controls will be added in the next commits.
 
+## Product search and URL params
+
+The products catalog now supports search through the URL.
+
+Current search behavior:
+
+- Reads the `q` query param from `/products`
+- Writes search changes back to the URL
+- Debounces search input before updating the route
+- Calls DummyJSON `/products/search?q=...`
+- Resets the catalog page to `1` when search changes
+- Shows the current search term as an active catalog badge
+- Shows an empty state when search returns no results
+
+Example URLs:
+
+```txt
+/products?q=phone
+/products?q=beauty
+/products?q=laptop
+```
+
+Search files live in:
+
+```txt
+src/modules/products/hooks/use-product-search-params.ts
+src/shared/hooks/use-debounce.ts
+src/modules/products/components/product-toolbar.tsx
+```
+
 ## Upcoming steps
 
-1. Add product search and URL params
-2. Add categories and filters
-3. Add sorting and pagination behavior
-4. Build product detail page
-5. Build cart, checkout and account flows
+1. Add categories and filters
+2. Add sorting and pagination behavior
+3. Build product detail page
+4. Build cart, checkout and account flows

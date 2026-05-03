@@ -81,12 +81,15 @@ export function ProductCatalogEmptyState() {
           </h1>
 
           <p className="mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
-            The API returned an empty product list. Search and filters will be
-            added in the next commits.
+            The current search returned no products. Try another keyword or
+            clear the search query from the URL.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <ButtonLink href={routes.home}>Back to home</ButtonLink>
+            <ButtonLink href={routes.products}>Clear search</ButtonLink>
+            <ButtonLink href={routes.home} variant="outline">
+              Back to home
+            </ButtonLink>
           </div>
         </Card>
       </Container>
