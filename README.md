@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 28: responsive mobile experience.
+Commit 29: Storybook foundation.
 
 ## Deployment
 
@@ -643,7 +643,34 @@ Responsive targets:
   * Tablet: 640px+
   * Desktop: 1024px+
 
+## Storybook foundation
+
+The project now includes a Storybook foundation for the ShopLite design system.
+
+Storybook behavior:
+
+  * Adds Storybook for Next.js
+  * Imports the global ShopLite Tailwind and design tokens
+  * Adds dark premium background configuration
+  * Adds initial stories for Button, Badge, Card and PageLoadingState
+  * Adds initial MDX documentation for the visual system
+
+Commands:
+
+    pnpm storybook
+    pnpm build-storybook
+
+Storybook files:
+
+    .storybook/main.ts
+    .storybook/preview.tsx
+    src/shared/components/ui/button.stories.tsx
+    src/shared/components/ui/badge.stories.tsx
+    src/shared/components/ui/card.stories.tsx
+    src/shared/components/feedback/page-loading-state.stories.tsx
+    src/shared/docs/shoplite-design-system.mdx
+
 ## Upcoming steps
 
-1. Add final UI polish
-2. Add portfolio README final documentation
+1. Add product component stories
+2. Add final portfolio README documentation
