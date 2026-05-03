@@ -120,6 +120,8 @@ export function CheckoutPageClient() {
       },
     });
 
+    window.sessionStorage.setItem("shoplite-checkout-in-progress", "true");
+
     clearCart();
     router.push(`${routes.orderSuccess}?orderId=${order.id}`);
   }

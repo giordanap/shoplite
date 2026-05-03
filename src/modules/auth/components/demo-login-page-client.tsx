@@ -35,6 +35,20 @@ function formatSessionDate(value: string): string {
   }).format(date);
 }
 
+function getSafeLoginRedirectPath(): string {
+  if (typeof window === "undefined") {
+    return routes.account;
+  }
+
+  const nextPath = new URLSearchParams(window.location.search).get("next");
+
+  if (!nextPath || !nextPath.startsWith("/") || nextPath.startsWith("//")) {
+    return routes.account;
+  }
+
+  return nextPath;
+}
+
 export function DemoLoginPageClient() {
   const router = useRouter();
   const session = useAuthStore((state) => state.session);
@@ -72,7 +86,7 @@ export function DemoLoginPageClient() {
       password: formState.password,
     });
 
-    router.push(routes.account);
+    router.push(getSafeLoginRedirectPath());
   }
 
   if (session) {
