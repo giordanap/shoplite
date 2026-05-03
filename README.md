@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 6: app shell navigation and footer.
+Commit 7: premium home page.
 
 ## Deployment
 
@@ -132,9 +132,27 @@ src/shared/components/layout
 src/shared/constants/navigation.ts
 ```
 
+## Premium home page
+
+The home page now follows the premium Stitch-inspired direction with:
+
+- Hero section
+- Featured product preview
+- Category cards
+- Product preview cards
+- Benefits section
+- Newsletter/next milestone section
+- Internal links prepared for GitHub Pages subpath deployment
+
+Home page files live in:
+
+```txt
+src/app/page.tsx
+src/modules/home/components/home-page.tsx
+```
+
 ## Upcoming steps
 
-1. Build premium home page
-2. Add core app routes
-3. Connect DummyJSON products
-4. Build catalog, cart, checkout and account flows
+1. Add core app routes
+2. Connect DummyJSON products
+3. Build catalog, cart, checkout and account flows
