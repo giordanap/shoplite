@@ -95,7 +95,7 @@ function HeroSection() {
             title={
               <>
                 Discover products with a
-                <span className="block bg-primary-gradient bg-clip-text text-transparent">
+                <span className="block text-gradient-primary">
                   smarter shopping experience.
                 </span>
               </>

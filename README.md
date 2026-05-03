@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 7: premium home page.
+Commit 8: core app routes and empty pages.
 
 ## Deployment
 
@@ -151,8 +151,20 @@ src/app/page.tsx
 src/modules/home/components/home-page.tsx
 ```
 
+## Core routes
+
+The main application routes now exist as static pages:
+
+```txt
+/products
+/product?id=1
+/cart
+/checkout
+/login
+/account
+/order-success
+
 ## Upcoming steps
 
-1. Add core app routes
-2. Connect DummyJSON products
-3. Build catalog, cart, checkout and account flows
+1. Connect DummyJSON products
+2. Build catalog, cart, checkout and account flows

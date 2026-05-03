@@ -125,11 +125,18 @@ body {
   }
 
   .bg-card-gradient {
-    background: var(--gradient-card);
+  background-image: var(--gradient-card);
   }
 
   .bg-primary-gradient {
-    background: var(--gradient-primary);
+    background-image: var(--gradient-primary);
+  }
+
+  .text-gradient-primary {
+    background-image: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
   }
 
   .glass-panel {
