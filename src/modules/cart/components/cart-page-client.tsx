@@ -119,7 +119,7 @@ export function CartPageClient() {
                   return (
                     <article
                       key={item.product.id}
-                      className="grid gap-5 p-5 md:grid-cols-[132px_minmax(0,1fr)] xl:grid-cols-[132px_minmax(0,1fr)_190px]"
+                      className="grid gap-5 p-4 sm:p-5 md:grid-cols-[132px_minmax(0,1fr)] xl:grid-cols-[132px_minmax(0,1fr)_190px]"
                     >
                       <a
                         href={routes.productDetail(item.product.id)}
@@ -194,7 +194,7 @@ export function CartPageClient() {
                       </div>
 
                       <div className="flex flex-col justify-between gap-5 md:col-span-2 xl:col-span-1 xl:items-end">
-                        <div className="flex items-center gap-2 xl:justify-end">
+                        <div className="flex w-full items-center justify-between gap-2 rounded-card border border-border-subtle bg-white/[0.03] p-2 sm:w-auto sm:justify-start xl:justify-end">
                           <Button
                             variant="outline"
                             size="sm"

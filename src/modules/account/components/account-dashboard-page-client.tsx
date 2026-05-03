@@ -118,7 +118,7 @@ export function AccountDashboardPageClient() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)]">
+        <div className="mt-8 grid gap-6 lg:mt-10 lg:grid-cols-[360px_minmax(0,1fr)]">
           <aside className="space-y-6">
             <Card className="overflow-hidden p-0">
               <div className="relative overflow-hidden border-b border-border-subtle bg-card-gradient p-6">
@@ -197,7 +197,7 @@ export function AccountDashboardPageClient() {
           </aside>
 
           <section className="space-y-6">
-            <div className="grid gap-4 md:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               <Card variant="subtle">
                 <Badge variant="secondary">Cart</Badge>
 

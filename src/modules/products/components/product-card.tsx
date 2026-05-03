@@ -109,7 +109,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         </div>
 
-        <div className="mt-5 grid grid-cols-2 gap-2">
+        <div className="mt-5 grid gap-2 min-[420px]:grid-cols-2">
           <AddToCartButton
             product={product}
             compact
