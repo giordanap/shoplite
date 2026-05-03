@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 21: checkout demo page.
+Commit 22: local order creation and success page.
 
 ## Deployment
 
@@ -483,7 +483,36 @@ because that can trigger the React warning:
 
     The result of getSnapshot should be cached to avoid an infinite loop
 
+## Local order creation
+
+The checkout demo now creates a local order before clearing the cart.
+
+Local order behavior:
+
+  * Creates a demo order in localStorage under `shoplite-orders-v1`
+  * Stores the latest order id under `shoplite-latest-order-id-v1`
+  * Captures customer, delivery, payment, items and totals
+  * Clears the Zustand cart after order creation
+  * Redirects to `/order-success?orderId=<id>`
+
+The local order service lives in:
+
+    src/modules/orders/services/local-orders.service.ts
+
+## Order success page
+
+The order success route now renders a real local confirmation page.
+
+Order success behavior:
+
+  * Reads `orderId` from the URL
+  * Reads persisted local orders from localStorage
+  * Shows order status, customer data, delivery method and item summary
+  * Shows subtotal, discount, delivery fee and final total
+  * Explains that this is a frontend-only demo order
+  * Uses `useSyncExternalStore` with a primitive localStorage snapshot to avoid the React getSnapshot warning
+
 ## Upcoming steps
 
-1. Build order success page
-2. Build account flow
+1. Build account demo page
+2. Add order history view
