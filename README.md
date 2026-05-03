@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 18: Zustand cart store with persistence.
+Commit 19: connected cart actions and custom sort dropdown.
 
 ## Deployment
 
@@ -417,7 +417,25 @@ The cart types live in:
 
     src/modules/cart/types/cart.types.ts
 
+## Cart actions
+
+The cart is now connected across the catalog, product detail and cart page.
+
+Current cart behavior:
+
+  * Add products from product cards
+  * Add products from product detail
+  * Persist cart state with Zustand
+  * Show real cart quantity in the header
+  * Increase, decrease and remove items from the cart page
+  * Clear the full cart
+  * Display cart totals and discount summary
+
+## Custom sort dropdown
+
+The catalog no longer uses the native browser select for sorting. It now uses a custom dark premium dropdown so the options match the ShopLite visual system.
+
 ## Upcoming steps
 
-1. Build cart page UI
+1. Polish cart page responsive states
 2. Build checkout and account flows
