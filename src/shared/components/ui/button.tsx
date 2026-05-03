@@ -1,5 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
+import { withBasePath } from "@/core/router";
 import { cn } from "@/shared/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "outline" | "danger";
@@ -22,6 +23,25 @@ const sizeClasses: Record<ButtonSize, string> = {
   md: "h-11 px-5 text-sm",
   lg: "h-12 px-6 text-sm",
 };
+
+function isExternalHref(href: string): boolean {
+  return (
+    href.startsWith("http://") ||
+    href.startsWith("https://") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:")
+  );
+}
+
+function resolveHref(href: string | undefined): string | undefined {
+  if (!href) return href;
+
+  if (href.startsWith("#") || isExternalHref(href)) {
+    return href;
+  }
+
+  return withBasePath(href);
+}
 
 export function buttonVariants({
   variant = "primary",
@@ -72,9 +92,14 @@ export function ButtonLink({
   className,
   variant = "primary",
   size = "md",
+  href,
   ...props
 }: ButtonLinkProps) {
   return (
-    <a className={buttonVariants({ variant, size, className })} {...props} />
+    <a
+      href={resolveHref(href)}
+      className={buttonVariants({ variant, size, className })}
+      {...props}
+    />
   );
 }
