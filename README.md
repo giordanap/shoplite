@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 12: products list connected to DummyJSON.
+Commit 13: premium product catalog layout.
 
 ## Deployment
 
@@ -271,11 +271,39 @@ Current behavior:
 - Display basic pagination metadata
 - Link product cards to the product detail placeholder
 
+## Premium product catalog layout
+
+The products page now renders a Stitch-inspired premium catalog layout.
+
+Current catalog pieces:
+
+- Premium catalog header
+- Sidebar filter foundation
+- Mobile filter section foundation
+- Toolbar with search and sort preview
+- Product count badges
+- Premium product cards
+- Product image area
+- Category badges
+- Discount badges
+- Stock badges
+- Rating display
+- Price and discounted price display
+- Pagination preview
+- Loading, error and empty catalog states
+
+Files live in:
+
+```txt
+src/modules/products/components
+```
+
+Search, URL params, functional filters and real pagination controls will be added in the next commits.
+
 ## Upcoming steps
 
-1. Build premium product catalog layout
-2. Add product search and URL params
-3. Add categories and filters
-4. Add sorting and pagination behavior
-5. Build product detail page
-6. Build cart, checkout and account flows
+1. Add product search and URL params
+2. Add categories and filters
+3. Add sorting and pagination behavior
+4. Build product detail page
+5. Build cart, checkout and account flows
