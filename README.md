@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 19: connected cart actions and custom sort dropdown.
+Commit 20: cart page from Stitch.
 
 ## Deployment
 
@@ -435,7 +435,26 @@ Current cart behavior:
 
 The catalog no longer uses the native browser select for sorting. It now uses a custom dark premium dropdown so the options match the ShopLite visual system.
 
+## Stitch-inspired cart page
+
+The cart page now has a polished premium commerce layout inspired by the ShopLite visual direction.
+
+Cart page behavior:
+
+  * Shows persisted Zustand cart items
+  * Displays product image, category, availability, price and item total
+  * Supports increase, decrease, remove and clear cart actions
+  * Shows a sticky order summary on desktop
+  * Displays subtotal, discount, estimated total and demo checkout note
+  * Includes portfolio-friendly trust/status cards
+  * Keeps the frontend-only commerce constraint visible
+
+The cart page lives in:
+
+    src/app/cart/page.tsx
+    src/modules/cart/components/cart-page-client.tsx
+
 ## Upcoming steps
 
-1. Polish cart page responsive states
-2. Build checkout and account flows
+1. Build checkout flow from Stitch
+2. Build account flow
