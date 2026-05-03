@@ -164,7 +164,11 @@ export function ProductToolbar({
             aria-label="Sort products"
           >
             {sortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
+              <option
+                key={option.value}
+                value={option.value}
+                className="bg-white text-slate-950"
+              >
                 {option.label}
               </option>
             ))}
