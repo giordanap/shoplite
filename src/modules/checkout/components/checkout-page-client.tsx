@@ -1,13 +1,14 @@
 "use client";
 
 import { FormEvent, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Badge, Button, ButtonLink, Card, Input } from "@/shared/components/ui";
 import { Container, SectionHeader } from "@/shared/components/layout";
 import { createLocalOrder } from "@/modules/orders/services";
 import { EmptyPageState } from "@/shared/components/feedback";
 import { getCartTotals, useCartStore } from "@/modules/cart/store";
-import { routes, withBasePath } from "@/core/router";
+import { routes } from "@/core/router";
 import type { CartItem } from "@/modules/cart/types";
 
 
@@ -59,6 +60,8 @@ function getItemTotal(item: CartItem): number {
 }
 
 export function CheckoutPageClient() {
+  const router = useRouter();
+  
   const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
 
@@ -118,7 +121,7 @@ export function CheckoutPageClient() {
     });
 
     clearCart();
-    window.location.href = withBasePath(`${routes.orderSuccess}?orderId=${order.id}`);
+    router.push(`${routes.orderSuccess}?orderId=${order.id}`);
   }
 
   if (items.length === 0) {

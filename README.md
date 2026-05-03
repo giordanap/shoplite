@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 22: local order creation and success page.
+Commit 23: demo login page.
 
 ## Deployment
 
@@ -511,6 +511,23 @@ Order success behavior:
   * Shows subtotal, discount, delivery fee and final total
   * Explains that this is a frontend-only demo order
   * Uses `useSyncExternalStore` with a primitive localStorage snapshot to avoid the React getSnapshot warning
+
+## Demo login page
+
+The login route now renders a frontend-only demo authentication flow.
+
+Demo login behavior:
+
+  * Creates a local demo session with Zustand persistence
+  * Stores the session under `shoplite-auth-v1`
+  * Accepts any email and a demo password with at least 4 characters
+  * Redirects to `/account` after successful login
+  * Explains that no backend, real credentials or auth provider are used
+
+Lint fix included in this commit:
+
+  * Replaced `window.location.href = ...` in checkout with `router.push(...)`
+  * This fixes the `react-hooks/immutability` lint error from the local order creation flow
 
 ## Upcoming steps
 
