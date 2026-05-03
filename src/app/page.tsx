@@ -1,3 +1,5 @@
+import { routes } from "@/core/router/routes";
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#080d1d] text-white">
@@ -15,8 +17,8 @@ export default function HomePage() {
 
         <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
           A modern frontend-only store built with Next.js, Tailwind CSS and
-          real product data. This first commit creates the foundation for a
-          premium shopping interface.
+          real product data. This commit adds the frontend architecture folders
+          that will support products, cart, checkout, auth and account flows.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
@@ -24,11 +26,11 @@ export default function HomePage() {
             href="#next"
             className="rounded-xl bg-violet-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-violet-300"
           >
-            Start building
+            View architecture
           </a>
 
           <a
-            href="https://dummyjson.com"
+            href={routes.external.dummyJson}
             target="_blank"
             rel="noreferrer"
             className="rounded-xl border border-cyan-300/40 px-6 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-200 hover:bg-cyan-300/10"
@@ -42,23 +44,23 @@ export default function HomePage() {
           className="mt-16 grid w-full gap-4 border-t border-white/10 pt-8 sm:grid-cols-3"
         >
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <h2 className="font-semibold text-cyan-200">Commit 1</h2>
+            <h2 className="font-semibold text-cyan-200">Commit 3</h2>
             <p className="mt-2 text-sm text-slate-400">
-              Static app foundation.
+              Frontend architecture folders.
             </p>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <h2 className="font-semibold text-violet-200">Next step</h2>
+            <h2 className="font-semibold text-violet-200">Structure</h2>
             <p className="mt-2 text-sm text-slate-400">
-              Add GitHub Pages deployment.
+              Core, modules and shared layers are now defined.
             </p>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <h2 className="font-semibold text-cyan-200">Goal</h2>
+            <h2 className="font-semibold text-cyan-200">Next step</h2>
             <p className="mt-2 text-sm text-slate-400">
-              Build the ShopLite premium e-commerce UI progressively.
+              Add visual design tokens inspired by the premium Stitch UI.
             </p>
           </div>
         </div>
