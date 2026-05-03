@@ -132,6 +132,48 @@ export function useProductSearchParams() {
     [setFilters],
   );
 
+  const setSorting = useCallback(
+    (sortBy: ProductSortField, order: ProductSortOrder) => {
+      setFilters({
+        sortBy,
+        order,
+        page: 1,
+      });
+    },
+    [setFilters],
+  );
+
+  const setPage = useCallback(
+    (page: number) => {
+      setFilters({
+        page,
+      });
+    },
+    [setFilters],
+  );
+
+  const setLimit = useCallback(
+    (limit: number) => {
+      setFilters({
+        limit,
+        page: 1,
+      });
+    },
+    [setFilters],
+  );
+
+  const goToNextPage = useCallback(() => {
+    setFilters({
+      page: filters.page + 1,
+    });
+  }, [filters.page, setFilters]);
+
+  const goToPreviousPage = useCallback(() => {
+    setFilters({
+      page: Math.max(filters.page - 1, 1),
+    });
+  }, [filters.page, setFilters]);
+
   const clearFilters = useCallback(() => {
     setFilters({
       search: "",
@@ -146,6 +188,11 @@ export function useProductSearchParams() {
     setSearch,
     clearSearch,
     setCategory,
+    setSorting,
+    setPage,
+    setLimit,
+    goToNextPage,
+    goToPreviousPage,
     clearFilters,
   };
 }
