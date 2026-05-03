@@ -1,9 +1,10 @@
 import Link from "next/link";
 
-import { routes } from "@/core/router/routes";
-import { mainNavigationItems } from "@/shared/constants";
 import { Badge, ButtonLink, IconButton } from "@/shared/components/ui";
+import { CartLink } from "@/modules/cart/components";
 import { Logo } from "./logo";
+import { mainNavigationItems } from "@/shared/constants";
+import { routes } from "@/core/router/routes";
 
 export function Header() {
   return (
@@ -36,16 +37,7 @@ export function Header() {
             Explore
           </ButtonLink>
 
-          <Link
-            href={routes.cart}
-            className="relative inline-flex size-10 items-center justify-center rounded-button border border-border-subtle bg-white/[0.03] text-foreground transition hover:border-border-strong hover:bg-white/[0.06]"
-            aria-label="Open cart"
-          >
-            <span aria-hidden="true">🛒</span>
-            <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-primary text-[0.65rem] font-black text-primary-foreground">
-              0
-            </span>
-          </Link>
+          <CartLink />
 
           <Link
             href={routes.account}
