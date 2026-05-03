@@ -19,11 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-<<<<<<< Updated upstream
-Commit 3: frontend architecture folders.
-=======
-Commit 4: visual foundation and design tokens.
->>>>>>> Stashed changes
+Commit 5: shared UI primitives.
 
 ## Deployment
 
@@ -43,11 +39,9 @@ NEXT_PUBLIC_BASE_PATH=
 
 Any local asset inside `/public` must be referenced using the `withBasePath()` helper instead of hardcoded root paths like `/logo.svg`.
 
-<<<<<<< Updated upstream
 ## Architecture
 
 The project follows a feature-based frontend architecture.
-
 
 ```txt
 src/
@@ -67,21 +61,13 @@ src/
     Reusable UI, layout components, feedback states, hooks, constants and utilities.
 ```
 
-The main principle is:
+The main principles are:
+
 1. Pages compose features.
 2. Features own their business UI and hooks.
 3. Core owns infrastructure.
 4. Shared owns reusable UI and utilities.
 
-## Upcoming steps
-1. Add visual design tokens
-2. Add shared UI primitives
-3. Add premium app shell
-4. Build premium home page
-5. Add core app routes
-6. Connect DummyJSON products
-7. Build catalog, cart, checkout and account flows
-=======
 ## Visual foundation
 
 The visual foundation is inspired by the Stitch premium UI direction:
@@ -102,12 +88,32 @@ src/app/globals.css
 src/shared/constants/design-tokens.ts
 ```
 
+## Shared UI primitives
+
+Reusable UI primitives live in:
+
+```txt
+src/shared/components/ui
+src/shared/components/layout
+src/shared/utils
+```
+
+Current primitives:
+
+- Button
+- ButtonLink
+- Card
+- Badge
+- Input
+- IconButton
+- SkeletonBlock
+- Container
+- SectionHeader
+
 ## Upcoming steps
 
-1. Add shared UI primitives
-2. Add premium app shell
-3. Build premium home page
-4. Add core app routes
-5. Connect DummyJSON products
-6. Build catalog, cart, checkout and account flows
->>>>>>> Stashed changes
+1. Add premium app shell
+2. Build premium home page
+3. Add core app routes
+4. Connect DummyJSON products
+5. Build catalog, cart, checkout and account flows
