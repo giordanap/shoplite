@@ -19,7 +19,11 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
+<<<<<<< Updated upstream
 Commit 3: frontend architecture folders.
+=======
+Commit 4: visual foundation and design tokens.
+>>>>>>> Stashed changes
 
 ## Deployment
 
@@ -39,6 +43,7 @@ NEXT_PUBLIC_BASE_PATH=
 
 Any local asset inside `/public` must be referenced using the `withBasePath()` helper instead of hardcoded root paths like `/logo.svg`.
 
+<<<<<<< Updated upstream
 ## Architecture
 
 The project follows a feature-based frontend architecture.
@@ -76,3 +81,33 @@ The main principle is:
 5. Add core app routes
 6. Connect DummyJSON products
 7. Build catalog, cart, checkout and account flows
+=======
+## Visual foundation
+
+The visual foundation is inspired by the Stitch premium UI direction:
+
+- Dark aetheric background
+- Electric violet primary accent
+- Neon cyan secondary accent
+- Glass-like surfaces
+- Gradient highlights
+- Glow shadows
+- Premium display typography
+- Reusable CSS tokens
+
+Design tokens live in:
+
+```txt
+src/app/globals.css
+src/shared/constants/design-tokens.ts
+```
+
+## Upcoming steps
+
+1. Add shared UI primitives
+2. Add premium app shell
+3. Build premium home page
+4. Add core app routes
+5. Connect DummyJSON products
+6. Build catalog, cart, checkout and account flows
+>>>>>>> Stashed changes

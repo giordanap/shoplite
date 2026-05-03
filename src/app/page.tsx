@@ -2,65 +2,74 @@ import { routes } from "@/core/router/routes";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#080d1d] text-white">
-      <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col items-start justify-center px-6 py-20">
-        <p className="mb-4 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300">
-          Frontend-only commerce demo
+    <main className="relative min-h-screen overflow-hidden bg-aetheric text-foreground">
+      <div className="aetheric-grid pointer-events-none absolute inset-0 opacity-40" />
+
+      <section className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col items-start justify-center px-6 py-20">
+        <p className="mb-5 rounded-full border border-secondary/30 bg-secondary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-secondary shadow-cyan">
+          Aetheric commerce foundation
         </p>
 
-        <h1 className="max-w-3xl text-5xl font-bold tracking-tight sm:text-6xl">
+        <h1 className="max-w-4xl font-display text-5xl font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl">
           ShopLite
-          <span className="block bg-gradient-to-r from-violet-300 via-cyan-300 to-violet-400 bg-clip-text text-transparent">
+          <span className="block bg-primary-gradient bg-clip-text text-transparent">
             Premium e-commerce experience.
           </span>
         </h1>
 
-        <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
           A modern frontend-only store built with Next.js, Tailwind CSS and
-          real product data. This commit adds the frontend architecture folders
-          that will support products, cart, checkout, auth and account flows.
+          real product data. This commit introduces the visual foundation:
+          design tokens, premium fonts, gradients, surfaces and reusable visual
+          utilities.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
           <a
-            href="#next"
-            className="rounded-xl bg-violet-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-violet-300"
+            href="#tokens"
+            className="rounded-button bg-primary-gradient px-6 py-3 text-sm font800 font-bold text-primary-foreground shadow-aetheric transition hover:scale-[1.02]"
           >
-            View architecture
+            View design tokens
           </a>
 
           <a
             href={routes.external.dummyJson}
             target="_blank"
             rel="noreferrer"
-            className="rounded-xl border border-cyan-300/40 px-6 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-200 hover:bg-cyan-300/10"
+            className="rounded-button border border-secondary/40 bg-secondary/10 px-6 py-3 text-sm font-bold text-secondary transition hover:border-secondary hover:bg-secondary/15"
           >
             DummyJSON API
           </a>
         </div>
 
         <div
-          id="next"
-          className="mt-16 grid w-full gap-4 border-t border-white/10 pt-8 sm:grid-cols-3"
+          id="tokens"
+          className="mt-16 grid w-full gap-4 border-t border-border-subtle pt-8 sm:grid-cols-3"
         >
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <h2 className="font-semibold text-cyan-200">Commit 3</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Frontend architecture folders.
+          <div className="glass-panel rounded-card p-5">
+            <h2 className="font-display text-lg font-semibold text-secondary">
+              Commit 4
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Aetheric design tokens.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <h2 className="font-semibold text-violet-200">Structure</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Core, modules and shared layers are now defined.
+          <div className="glass-panel rounded-card p-5">
+            <h2 className="font-display text-lg font-semibold text-primary">
+              Visual system
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Colors, typography, gradients, surfaces, radius and glow shadows.
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-            <h2 className="font-semibold text-cyan-200">Next step</h2>
-            <p className="mt-2 text-sm text-slate-400">
-              Add visual design tokens inspired by the premium Stitch UI.
+          <div className="glass-panel rounded-card p-5">
+            <h2 className="font-display text-lg font-semibold text-accent">
+              Next step
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Add shared UI primitives using these tokens.
             </p>
           </div>
         </div>
