@@ -6,11 +6,11 @@ import {
   ProductCatalogErrorState,
   ProductCatalogLoadingState,
 } from "./product-catalog-states";
-import { useProductsQuery } from "../hooks";
-import { defaultProductFilters } from "../services";
+import { useProductSearchParams, useProductsQuery } from "../hooks";
 
 export function ProductsPageClient() {
-  const productsQuery = useProductsQuery(defaultProductFilters);
+  const { filters, setSearch, clearSearch } = useProductSearchParams();
+  const productsQuery = useProductsQuery(filters);
 
   if (productsQuery.isLoading) {
     return <ProductCatalogLoadingState />;
@@ -28,6 +28,10 @@ export function ProductsPageClient() {
     <ProductCatalog
       products={productsQuery.data.items}
       pagination={productsQuery.data.pagination}
+      search={filters.search}
+      isFetching={productsQuery.isFetching}
+      onSearchChange={setSearch}
+      onClearSearch={clearSearch}
     />
   );
 }

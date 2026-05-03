@@ -1,10 +1,17 @@
-import { Badge, Input } from "@/shared/components/ui";
+"use client";
+
+import { useEffect, useRef } from "react";
+
+import { Badge, Button, Input } from "@/shared/components/ui";
 
 type ProductToolbarProps = {
   total: number;
   showing: number;
   page: number;
   totalPages: number;
+  search: string;
+  onSearchChange: (value: string) => void;
+  onClearSearch: () => void;
 };
 
 export function ProductToolbar({
@@ -12,7 +19,44 @@ export function ProductToolbar({
   showing,
   page,
   totalPages,
+  search,
+  onSearchChange,
+  onClearSearch,
 }: ProductToolbarProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const debounceTimeoutRef = useRef<number | null>(null);
+  const hasSearch = search.trim().length > 0;
+
+  function handleSearchChange(value: string) {
+    if (debounceTimeoutRef.current) {
+      window.clearTimeout(debounceTimeoutRef.current);
+    }
+
+    debounceTimeoutRef.current = window.setTimeout(() => {
+      onSearchChange(value);
+    }, 450);
+  }
+
+  function handleClearSearch() {
+    if (debounceTimeoutRef.current) {
+      window.clearTimeout(debounceTimeoutRef.current);
+    }
+
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+
+    onClearSearch();
+  }
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimeoutRef.current) {
+        window.clearTimeout(debounceTimeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="rounded-card border border-border-subtle bg-white/[0.03] p-4">
       <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
@@ -25,19 +69,32 @@ export function ProductToolbar({
             <Badge variant="muted">
               Page {page} of {totalPages}
             </Badge>
+            {hasSearch ? <Badge variant="primary">Search: {search}</Badge> : null}
           </div>
 
           <p className="mt-3 text-sm text-muted-foreground">
-            Premium catalog layout connected to real DummyJSON products.
+            Search is now synchronized with the URL using the `q` query param.
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_180px] xl:w-[520px]">
+        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_180px] xl:w-[640px]">
           <Input
+            ref={inputRef}
+            key={search}
+            defaultValue={search}
+            onChange={(event) => handleSearchChange(event.target.value)}
             placeholder="Search products..."
-            aria-label="Search products preview"
-            disabled
+            aria-label="Search products"
           />
+
+          <Button
+            variant="outline"
+            size="md"
+            disabled={!hasSearch}
+            onClick={handleClearSearch}
+          >
+            Clear
+          </Button>
 
           <select
             className="h-11 rounded-button border border-border-subtle bg-white/[0.04] px-4 text-sm font-semibold text-muted-foreground outline-none"
