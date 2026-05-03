@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 23: demo login page.
+Commit 24: account dashboard page.
 
 ## Deployment
 
@@ -529,7 +529,29 @@ Lint fix included in this commit:
   * Replaced `window.location.href = ...` in checkout with `router.push(...)`
   * This fixes the `react-hooks/immutability` lint error from the local order creation flow
 
+## Account dashboard page
+
+The account route now renders a frontend-only customer dashboard.
+
+Account dashboard behavior:
+
+  * Reads the local demo auth session from Zustand
+  * Redirects unauthenticated users to the demo login flow
+  * Shows demo profile information and session metadata
+  * Shows persistent cart stats using `getCartTotals(items)` with `useMemo`
+  * Shows recent local orders from localStorage
+  * Links to local order confirmations
+  * Shows a cart preview
+  * Supports logout and redirects back to `/login`
+
+Important Zustand pattern:
+
+    const cartItems = useCartStore((state) => state.items);
+    const cartTotals = useMemo(() => getCartTotals(cartItems), [cartItems]);
+
+Do not use a Zustand selector that returns a new object for totals.
+
 ## Upcoming steps
 
-1. Build account demo page
-2. Add order history view
+1. Polish account responsive states
+2. Add final README portfolio documentation
