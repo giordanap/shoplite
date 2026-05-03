@@ -1,6 +1,9 @@
-import { routes } from "@/core/router/routes";
-import { Container } from "@/shared/components/layout";
+"use client";
+
 import { Badge, Button, ButtonLink, Card } from "@/shared/components/ui";
+import { Container } from "@/shared/components/layout";
+import { routes } from "@/core/router/routes";
+import { useCartStore } from "@/modules/cart/store";
 
 import type { Product } from "../types";
 
@@ -55,6 +58,19 @@ export function ProductDetail({ product }: ProductDetailProps) {
   const heroImage = product.images[0] ?? product.thumbnail;
   const galleryImages =
     product.images.length > 0 ? product.images.slice(0, 4) : [product.thumbnail];
+
+  const addProduct = useCartStore((state) => state.addProduct);
+  const cartItemQuantity =
+    useCartStore(
+      (state) =>
+        state.items.find((item) => item.product.id === product.id)?.quantity,
+    ) ?? 0;
+
+  const isOutOfStock = product.availabilityStatus === "out-of-stock";
+
+  function handleAddToCart() {
+    addProduct(product);
+  }
 
   return (
     <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric">
@@ -186,7 +202,11 @@ export function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button disabled>Add to cart soon</Button>
+              <Button disabled={isOutOfStock} onClick={handleAddToCart}>
+                {cartItemQuantity > 0
+                  ? `Add one more · ${cartItemQuantity} in cart`
+                  : "Add to cart"}
+              </Button>
               <ButtonLink href={routes.cart} variant="outline">
                 Cart preview
               </ButtonLink>

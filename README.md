@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 17: product detail page.
+Commit 18: Zustand cart store with persistence.
 
 ## Deployment
 
@@ -396,6 +396,28 @@ Product detail files live in:
     src/modules/products/components/product-detail.tsx
     src/modules/products/components/product-detail-states.tsx
 
+## Persistent cart store
+
+The cart now uses Zustand with localStorage persistence.
+
+Cart behavior added in Commit 18:
+
+  * Adds Zustand as the client-side cart state manager
+  * Persists cart items under `shoplite-cart-v1`
+  * Stores lightweight product snapshots instead of raw API responses
+  * Supports add, increase, decrease, update quantity, remove and clear actions
+  * Updates the header cart badge from real cart state
+  * Enables Add to cart from the product detail page
+
+The cart store lives in:
+
+    src/modules/cart/store/cart.store.ts
+
+The cart types live in:
+
+    src/modules/cart/types/cart.types.ts
+
 ## Upcoming steps
 
-1. Build cart, checkout and account flows
+1. Build cart page UI
+2. Build checkout and account flows
