@@ -4,6 +4,40 @@ import { useEffect, useRef } from "react";
 
 import { Badge, Button, Input } from "@/shared/components/ui";
 
+import type { ProductSortField, ProductSortOrder } from "../types";
+
+type SortOptionValue = `${ProductSortField}:${ProductSortOrder}`;
+
+const sortOptions: Array<{
+  label: string;
+  value: SortOptionValue;
+}> = [
+  {
+    label: "Recommended",
+    value: "title:asc",
+  },
+  {
+    label: "Name Z-A",
+    value: "title:desc",
+  },
+  {
+    label: "Price low to high",
+    value: "price:asc",
+  },
+  {
+    label: "Price high to low",
+    value: "price:desc",
+  },
+  {
+    label: "Rating high to low",
+    value: "rating:desc",
+  },
+  {
+    label: "Rating low to high",
+    value: "rating:asc",
+  },
+];
+
 type ProductToolbarProps = {
   total: number;
   showing: number;
@@ -11,8 +45,11 @@ type ProductToolbarProps = {
   totalPages: number;
   search: string;
   selectedCategoryName: string | null;
+  sortBy: ProductSortField;
+  order: ProductSortOrder;
   onSearchChange: (value: string) => void;
   onClearSearch: () => void;
+  onSortChange: (sortBy: ProductSortField, order: ProductSortOrder) => void;
 };
 
 export function ProductToolbar({
@@ -22,12 +59,16 @@ export function ProductToolbar({
   totalPages,
   search,
   selectedCategoryName,
+  sortBy,
+  order,
   onSearchChange,
   onClearSearch,
+  onSortChange,
 }: ProductToolbarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const debounceTimeoutRef = useRef<number | null>(null);
   const hasSearch = search.trim().length > 0;
+  const selectedSortValue: SortOptionValue = `${sortBy}:${order}`;
 
   function handleSearchChange(value: string) {
     if (debounceTimeoutRef.current) {
@@ -51,6 +92,15 @@ export function ProductToolbar({
     onClearSearch();
   }
 
+  function handleSortChange(value: SortOptionValue) {
+    const [nextSortBy, nextOrder] = value.split(":") as [
+      ProductSortField,
+      ProductSortOrder,
+    ];
+
+    onSortChange(nextSortBy, nextOrder);
+  }
+
   useEffect(() => {
     return () => {
       if (debounceTimeoutRef.current) {
@@ -65,24 +115,28 @@ export function ProductToolbar({
         <div>
           <div className="flex flex-wrap items-center gap-2">
             <Badge variant="secondary">Catalog</Badge>
+
             <Badge variant="muted">
               Showing {showing} of {total}
             </Badge>
+
             <Badge variant="muted">
               Page {page} of {totalPages}
             </Badge>
+
             {hasSearch ? <Badge variant="primary">Search: {search}</Badge> : null}
+
             {selectedCategoryName ? (
               <Badge variant="accent">Category: {selectedCategoryName}</Badge>
             ) : null}
           </div>
 
           <p className="mt-3 text-sm text-muted-foreground">
-            Search and category filters are synchronized with the URL.
+            Search, category, sorting and pagination are synchronized with the URL.
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_180px] xl:w-[640px]">
+        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_220px] xl:w-[700px]">
           <Input
             ref={inputRef}
             key={search}
@@ -102,11 +156,18 @@ export function ProductToolbar({
           </Button>
 
           <select
-            className="h-11 rounded-button border border-border-subtle bg-white/[0.04] px-4 text-sm font-semibold text-muted-foreground outline-none"
-            disabled
-            aria-label="Sort products preview"
+            value={selectedSortValue}
+            onChange={(event) =>
+              handleSortChange(event.target.value as SortOptionValue)
+            }
+            className="h-11 rounded-button border border-border-subtle bg-white/[0.04] px-4 text-sm font-semibold text-foreground outline-none transition duration-200 hover:border-border-strong focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+            aria-label="Sort products"
           >
-            <option>Recommended</option>
+            {sortOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
         </div>
       </div>

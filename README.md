@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 15: categories and filters.
+Commit 16: sorting and pagination behavior.
 
 ## Deployment
 
@@ -360,8 +360,21 @@ src/modules/products/components/product-filters.tsx
 src/modules/products/services/products.service.ts
 ```
 
+## Sorting and pagination behavior
+
+The product catalog now supports URL-driven sorting and pagination.
+
+Supported query params:
+
+    /products?page=2
+    /products?sortBy=price&order=asc
+    /products?sortBy=price&order=desc
+    /products?q=phone&page=2
+    /products?category=smartphones&page=2
+
+The UI keeps search, category, sort and page state synchronized with the URL.
+
 ## Upcoming steps
 
-1. Add sorting and pagination behavior
-2. Build product detail page
-3. Build cart, checkout and account flows
+1. Build product detail page
+2. Build cart, checkout and account flows

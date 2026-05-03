@@ -18,6 +18,8 @@ export function ProductsPageClient() {
     setSearch,
     clearSearch,
     setCategory,
+    setSorting,
+    setPage,
     clearFilters,
   } = useProductSearchParams();
 
@@ -43,11 +45,15 @@ export function ProductsPageClient() {
       pagination={productsQuery.data.pagination}
       search={filters.search}
       selectedCategorySlug={filters.categorySlug}
+      sortBy={filters.sortBy}
+      order={filters.order}
       isFetching={productsQuery.isFetching}
       isLoadingCategories={categoriesQuery.isLoading}
       onSearchChange={setSearch}
       onClearSearch={clearSearch}
       onCategoryChange={setCategory}
+      onSortChange={setSorting}
+      onPageChange={setPage}
       onClearFilters={clearFilters}
     />
   );
