@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 20: cart page from Stitch.
+Commit 21: checkout demo page.
 
 ## Deployment
 
@@ -454,7 +454,36 @@ The cart page lives in:
     src/app/cart/page.tsx
     src/modules/cart/components/cart-page-client.tsx
 
+## Checkout demo page
+
+The checkout route now renders a simulated frontend-only checkout experience.
+
+Checkout behavior:
+
+  * Reads persisted cart items from Zustand
+  * Computes totals with `getCartTotals(items)` and `useMemo`
+  * Shows contact information fields
+  * Shows delivery address fields
+  * Provides standard and express delivery options
+  * Displays a simulated payment section with no real card data
+  * Shows a sticky checkout summary on desktop
+  * Clears the cart after placing a demo order
+  * Redirects to `/order-success`
+
+Important Zustand pattern:
+
+    const items = useCartStore((state) => state.items);
+    const totals = useMemo(() => getCartTotals(items), [items]);
+
+Avoid using selectors that return a new object on every render, such as:
+
+    useCartStore(selectCartTotals)
+
+because that can trigger the React warning:
+
+    The result of getSnapshot should be cached to avoid an infinite loop
+
 ## Upcoming steps
 
-1. Build checkout flow from Stitch
+1. Build order success page
 2. Build account flow
