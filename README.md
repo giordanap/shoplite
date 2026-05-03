@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 14: product search and URL params.
+Commit 15: categories and filters.
 
 ## Deployment
 
@@ -330,9 +330,38 @@ src/shared/hooks/use-debounce.ts
 src/modules/products/components/product-toolbar.tsx
 ```
 
+## Categories and filters
+
+The products catalog now supports real category filters from DummyJSON.
+
+Current category behavior:
+
+- Fetch categories from DummyJSON
+- Render category filter chips
+- Store selected category in the URL
+- Use `/products/category/{slug}` when a category is selected
+- Clear search when a category is selected
+- Clear category when search is used
+- Show active category in the catalog toolbar
+
+Example URLs:
+
+```txt
+/products?category=smartphones
+/products?category=beauty
+/products?category=furniture
+```
+
+Category files live in:
+
+```txt
+src/modules/products/hooks/use-product-categories-query.ts
+src/modules/products/components/product-filters.tsx
+src/modules/products/services/products.service.ts
+```
+
 ## Upcoming steps
 
-1. Add categories and filters
-2. Add sorting and pagination behavior
-3. Build product detail page
-4. Build cart, checkout and account flows
+1. Add sorting and pagination behavior
+2. Build product detail page
+3. Build cart, checkout and account flows

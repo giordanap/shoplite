@@ -3,13 +3,16 @@ import { dummyJsonEndpoints } from "@/core/api/dummyjson";
 import { toOffsetPagination } from "@/core/pagination";
 
 import {
+  mapDummyJsonCategoryDtoToProductCategory,
   mapDummyJsonProductDtoToProduct,
   mapDummyJsonProductsResponseDtoToPaginatedProducts,
 } from "../mappers";
 import type {
+  DummyJsonProductCategoryDto,
   DummyJsonProductDto,
   DummyJsonProductsResponseDto,
   Product,
+  ProductCategory,
   ProductFilters,
 } from "../types";
 
@@ -29,6 +32,7 @@ export function normalizeProductFilters(
     ...defaultProductFilters,
     ...filters,
     search: filters?.search?.trim() ?? defaultProductFilters.search,
+    categorySlug: filters?.categorySlug?.trim() || null,
   };
 }
 
@@ -40,9 +44,11 @@ export const productsService = {
       limit: normalizedFilters.limit,
     });
 
-    const endpoint = normalizedFilters.search
-      ? dummyJsonEndpoints.products.search
-      : dummyJsonEndpoints.products.list;
+    const endpoint = normalizedFilters.categorySlug
+      ? dummyJsonEndpoints.products.byCategory(normalizedFilters.categorySlug)
+      : normalizedFilters.search
+        ? dummyJsonEndpoints.products.search
+        : dummyJsonEndpoints.products.list;
 
     const response = await dummyJsonClient.get<DummyJsonProductsResponseDto>(
       endpoint,
@@ -52,12 +58,23 @@ export const productsService = {
           skip,
           sortBy: normalizedFilters.sortBy,
           order: normalizedFilters.order,
-          q: normalizedFilters.search || undefined,
+          q:
+            !normalizedFilters.categorySlug && normalizedFilters.search
+              ? normalizedFilters.search
+              : undefined,
         },
       },
     );
 
     return mapDummyJsonProductsResponseDtoToPaginatedProducts(response);
+  },
+
+  async getProductCategories(): Promise<ProductCategory[]> {
+    const response = await dummyJsonClient.get<DummyJsonProductCategoryDto[]>(
+      dummyJsonEndpoints.products.categories,
+    );
+
+    return response.map(mapDummyJsonCategoryDtoToProductCategory);
   },
 
   async getProductById(productId: number | string): Promise<Product> {
