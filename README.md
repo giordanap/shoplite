@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 8: core app routes and empty pages.
+Commit 9: DummyJSON API client foundation.
 
 ## Deployment
 
@@ -163,8 +163,34 @@ The main application routes now exist as static pages:
 /login
 /account
 /order-success
+```
+
+## DummyJSON API client foundation
+
+The API foundation prepares the app to consume DummyJSON through a controlled internal client.
+
+Current API foundation:
+
+- `fetchClient` wrapper
+- Query string builder
+- HTTP error normalization
+- Network error normalization
+- Timeout handling
+- DummyJSON base client
+- DummyJSON endpoint registry
+
+Files live in:
+
+```txt
+src/core/http
+src/core/errors
+src/core/api/dummyjson
+```
 
 ## Upcoming steps
 
-1. Connect DummyJSON products
-2. Build catalog, cart, checkout and account flows
+1. Add product DTOs, models and mappers
+2. Set up TanStack Query
+3. Fetch products from DummyJSON
+4. Build premium product catalog layout
+5. Build cart, checkout and account flows
