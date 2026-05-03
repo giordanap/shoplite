@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 5: shared UI primitives.
+Commit 6: app shell navigation and footer.
 
 ## Deployment
 
@@ -110,10 +110,31 @@ Current primitives:
 - Container
 - SectionHeader
 
+## App shell
+
+The app shell defines the global structure used by all pages.
+
+Current shell pieces:
+
+- Sticky header
+- Logo
+- Main navigation
+- Cart placeholder action
+- Account placeholder action
+- Mobile navigation row
+- Footer navigation groups
+- Portfolio/demo badges
+
+Shell files live in:
+
+```txt
+src/shared/components/layout
+src/shared/constants/navigation.ts
+```
+
 ## Upcoming steps
 
-1. Add premium app shell
-2. Build premium home page
-3. Add core app routes
-4. Connect DummyJSON products
-5. Build catalog, cart, checkout and account flows
+1. Build premium home page
+2. Add core app routes
+3. Connect DummyJSON products
+4. Build catalog, cart, checkout and account flows

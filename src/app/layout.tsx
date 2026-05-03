@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
+
+import { AppShell } from "@/shared/components/layout";
+
 import "./globals.css";
 
 const manrope = Manrope({
@@ -31,7 +34,7 @@ export default function RootLayout({
       className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
-        {children}
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
