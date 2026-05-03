@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 29: Storybook foundation.
+Commit 30: Storybook stories for commerce components.
 
 ## Deployment
 
@@ -670,7 +670,34 @@ Storybook files:
     src/shared/components/feedback/page-loading-state.stories.tsx
     src/shared/docs/shoplite-design-system.mdx
 
+## Storybook commerce stories
+
+The project now includes Storybook stories for reusable commerce components.
+
+Commerce stories added:
+
+  * AddToCartButton
+  * FavoriteToggleButton
+  * ProductCard
+  * ProductDetail
+
+Story states covered:
+
+  * Default product
+  * Product already in cart
+  * Favorite product
+  * Low stock product
+  * Out of stock product
+  * Compact action buttons
+
+Testing utilities:
+
+    src/modules/products/testing/product.mocks.ts
+    src/shared/storybook/commerce-store-fixtures.tsx
+
+The Storybook fixtures seed Zustand cart and wishlist state per story without relying on backend data.
+
 ## Upcoming steps
 
-1. Add product component stories
+1. Add checkout/account Storybook stories
 2. Add final portfolio README documentation
