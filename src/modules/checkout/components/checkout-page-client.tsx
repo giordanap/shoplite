@@ -2,12 +2,14 @@
 
 import { FormEvent, useMemo, useState } from "react";
 
-import { routes, withBasePath } from "@/core/router";
-import { getCartTotals, useCartStore } from "@/modules/cart/store";
-import type { CartItem } from "@/modules/cart/types";
-import { EmptyPageState } from "@/shared/components/feedback";
-import { Container, SectionHeader } from "@/shared/components/layout";
 import { Badge, Button, ButtonLink, Card, Input } from "@/shared/components/ui";
+import { Container, SectionHeader } from "@/shared/components/layout";
+import { createLocalOrder } from "@/modules/orders/services";
+import { EmptyPageState } from "@/shared/components/feedback";
+import { getCartTotals, useCartStore } from "@/modules/cart/store";
+import { routes, withBasePath } from "@/core/router";
+import type { CartItem } from "@/modules/cart/types";
+
 
 type DeliveryMethod = "standard" | "express";
 
@@ -91,8 +93,32 @@ export function CheckoutPageClient() {
 
     if (!canPlaceOrder) return;
 
+    const order = createLocalOrder({
+      customer: {
+        fullName: formState.fullName,
+        email: formState.email,
+        phone: formState.phone,
+        address: formState.address,
+        city: formState.city,
+        postalCode: formState.postalCode,
+      },
+      delivery: {
+        method: formState.deliveryMethod,
+        label: getDeliveryLabel(formState.deliveryMethod),
+        fee: deliveryFee,
+      },
+      items,
+      totals: {
+        subtotal: totals.subtotal,
+        discountTotal: totals.discountTotal,
+        deliveryFee,
+        taxTotal: 0,
+        total: grandTotal,
+      },
+    });
+
     clearCart();
-    window.location.href = withBasePath(routes.orderSuccess);
+    window.location.href = withBasePath(`${routes.orderSuccess}?orderId=${order.id}`);
   }
 
   if (items.length === 0) {
