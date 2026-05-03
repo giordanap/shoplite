@@ -10,30 +10,47 @@ import { ProductToolbar } from "./product-toolbar";
 
 type ProductCatalogProps = {
   products: Product[];
+  categories: ProductCategory[];
   pagination: PaginationMeta;
   search: string;
+  selectedCategorySlug: string | null;
   isFetching: boolean;
+  isLoadingCategories?: boolean;
   onSearchChange: (value: string) => void;
   onClearSearch: () => void;
+  onCategoryChange: (categorySlug: string | null) => void;
+  onClearFilters: () => void;
 };
 
-function getCatalogCategories(products: Product[]): ProductCategory[] {
-  return Array.from(
-    new Map(
-      products.map((product) => [product.category.slug, product.category]),
-    ).values(),
+function getSelectedCategoryName(
+  categories: ProductCategory[],
+  selectedCategorySlug: string | null,
+): string | null {
+  if (!selectedCategorySlug) return null;
+
+  return (
+    categories.find((category) => category.slug === selectedCategorySlug)
+      ?.name ?? selectedCategorySlug
   );
 }
 
 export function ProductCatalog({
   products,
+  categories,
   pagination,
   search,
+  selectedCategorySlug,
   isFetching,
+  isLoadingCategories = false,
   onSearchChange,
   onClearSearch,
+  onCategoryChange,
+  onClearFilters,
 }: ProductCatalogProps) {
-  const categories = getCatalogCategories(products);
+  const selectedCategoryName = getSelectedCategoryName(
+    categories,
+    selectedCategorySlug,
+  );
 
   return (
     <div
@@ -46,8 +63,8 @@ export function ProductCatalog({
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
             eyebrow="Premium catalog"
-            title="Explore real products with searchable URL state."
-            description="The catalog is connected to DummyJSON search and keeps the current search term in the browser URL."
+            title="Explore real products by search and category."
+            description="The catalog is connected to DummyJSON search and category endpoints, with state reflected in the URL."
           />
 
           <div className="flex flex-wrap gap-2">
@@ -59,7 +76,13 @@ export function ProductCatalog({
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
           <div className="hidden lg:block">
-            <ProductFilters categories={categories} />
+            <ProductFilters
+              categories={categories}
+              selectedCategorySlug={selectedCategorySlug}
+              isLoadingCategories={isLoadingCategories}
+              onCategoryChange={onCategoryChange}
+              onClearFilters={onClearFilters}
+            />
           </div>
 
           <div>
@@ -69,12 +92,19 @@ export function ProductCatalog({
               page={pagination.page}
               totalPages={pagination.totalPages}
               search={search}
+              selectedCategoryName={selectedCategoryName}
               onSearchChange={onSearchChange}
               onClearSearch={onClearSearch}
             />
 
             <div className="mt-6 lg:hidden">
-              <ProductFilters categories={categories} />
+              <ProductFilters
+                categories={categories}
+                selectedCategorySlug={selectedCategorySlug}
+                isLoadingCategories={isLoadingCategories}
+                onCategoryChange={onCategoryChange}
+                onClearFilters={onClearFilters}
+              />
             </div>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -92,8 +122,8 @@ export function ProductCatalog({
                     Next catalog milestone
                   </h2>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Category filters, sorting and real pagination behavior will
-                    be layered on top of this searchable layout.
+                    Sorting and real pagination behavior will be layered on top
+                    of this searchable and filterable catalog.
                   </p>
                 </div>
 

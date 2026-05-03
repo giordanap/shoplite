@@ -1,12 +1,24 @@
-import { Badge, Button, Card, Input } from "@/shared/components/ui";
+import { Badge, Button, Card } from "@/shared/components/ui";
 
 import type { ProductCategory } from "../types";
 
 type ProductFiltersProps = {
   categories: ProductCategory[];
+  selectedCategorySlug: string | null;
+  isLoadingCategories?: boolean;
+  onCategoryChange: (categorySlug: string | null) => void;
+  onClearFilters: () => void;
 };
 
-export function ProductFilters({ categories }: ProductFiltersProps) {
+export function ProductFilters({
+  categories,
+  selectedCategorySlug,
+  isLoadingCategories = false,
+  onCategoryChange,
+  onClearFilters,
+}: ProductFiltersProps) {
+  const hasCategory = selectedCategorySlug !== null;
+
   return (
     <aside className="space-y-4">
       <Card variant="subtle">
@@ -16,56 +28,59 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
               Filters
             </h2>
             <p className="mt-1 text-sm text-muted-foreground">
-              Visual foundation for upcoming filtering.
+              Filter real DummyJSON products by category.
             </p>
           </div>
 
-          <Badge variant="muted">Soon</Badge>
+          <Badge variant={hasCategory ? "primary" : "muted"}>
+            {hasCategory ? "Active" : "Ready"}
+          </Badge>
         </div>
 
         <div className="mt-6 space-y-5">
-          <div>
-            <label
-              htmlFor="catalog-search-preview"
-              className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground"
-            >
-              Search
-            </label>
-            <Input
-              id="catalog-search-preview"
-              className="mt-2"
-              placeholder="Search products..."
-              disabled
-            />
-          </div>
-
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
               Categories
             </p>
 
             <div className="mt-3 flex flex-wrap gap-2">
-              {categories.slice(0, 8).map((category) => (
-                <Badge key={category.slug} variant="muted">
-                  {category.name}
-                </Badge>
-              ))}
+              {isLoadingCategories ? (
+                <Badge variant="muted">Loading categories...</Badge>
+              ) : null}
+
+              {!isLoadingCategories && categories.length === 0 ? (
+                <Badge variant="muted">No categories</Badge>
+              ) : null}
+
+              {categories.map((category) => {
+                const isSelected = category.slug === selectedCategorySlug;
+
+                return (
+                  <button
+                    key={category.slug}
+                    type="button"
+                    onClick={() =>
+                      onCategoryChange(isSelected ? null : category.slug)
+                    }
+                    className="rounded-full"
+                    aria-pressed={isSelected}
+                  >
+                    <Badge variant={isSelected ? "secondary" : "muted"}>
+                      {category.name}
+                    </Badge>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-              Price range
-            </p>
-
-            <div className="mt-3 grid grid-cols-2 gap-3">
-              <Input placeholder="Min" disabled />
-              <Input placeholder="Max" disabled />
-            </div>
-          </div>
-
-          <Button variant="outline" className="w-full" disabled>
-            Apply filters soon
+          <Button
+            variant="outline"
+            className="w-full"
+            disabled={!hasCategory}
+            onClick={onClearFilters}
+          >
+            Clear filters
           </Button>
         </div>
       </Card>
@@ -77,8 +92,9 @@ export function ProductFilters({ categories }: ProductFiltersProps) {
 
         <div className="mt-4 space-y-3 text-sm text-muted-foreground">
           <p>Real products: enabled</p>
-          <p>Search: next commit</p>
-          <p>Filters: upcoming</p>
+          <p>Search: enabled</p>
+          <p>Category filters: enabled</p>
+          <p>Sorting: upcoming</p>
           <p>Pagination: upcoming</p>
         </div>
       </Card>

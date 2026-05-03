@@ -10,6 +10,7 @@ type ProductToolbarProps = {
   page: number;
   totalPages: number;
   search: string;
+  selectedCategoryName: string | null;
   onSearchChange: (value: string) => void;
   onClearSearch: () => void;
 };
@@ -20,6 +21,7 @@ export function ProductToolbar({
   page,
   totalPages,
   search,
+  selectedCategoryName,
   onSearchChange,
   onClearSearch,
 }: ProductToolbarProps) {
@@ -70,10 +72,13 @@ export function ProductToolbar({
               Page {page} of {totalPages}
             </Badge>
             {hasSearch ? <Badge variant="primary">Search: {search}</Badge> : null}
+            {selectedCategoryName ? (
+              <Badge variant="accent">Category: {selectedCategoryName}</Badge>
+            ) : null}
           </div>
 
           <p className="mt-3 text-sm text-muted-foreground">
-            Search is now synchronized with the URL using the `q` query param.
+            Search and category filters are synchronized with the URL.
           </p>
         </div>
 

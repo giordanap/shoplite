@@ -41,6 +41,10 @@ function buildSearchParams(filters: ProductFilters): string {
     params.set("q", filters.search);
   }
 
+  if (filters.categorySlug) {
+    params.set("category", filters.categorySlug);
+  }
+
   if (filters.page > 1) {
     params.set("page", String(filters.page));
   }
@@ -103,6 +107,7 @@ export function useProductSearchParams() {
     (search: string) => {
       setFilters({
         search,
+        categorySlug: null,
         page: 1,
       });
     },
@@ -116,10 +121,31 @@ export function useProductSearchParams() {
     });
   }, [setFilters]);
 
+  const setCategory = useCallback(
+    (categorySlug: string | null) => {
+      setFilters({
+        categorySlug,
+        search: "",
+        page: 1,
+      });
+    },
+    [setFilters],
+  );
+
+  const clearFilters = useCallback(() => {
+    setFilters({
+      search: "",
+      categorySlug: null,
+      page: 1,
+    });
+  }, [setFilters]);
+
   return {
     filters,
     setFilters,
     setSearch,
     clearSearch,
+    setCategory,
+    clearFilters,
   };
 }
