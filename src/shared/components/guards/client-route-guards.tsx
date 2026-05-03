@@ -6,8 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { routes } from "@/core/router";
 import { useAuthStore } from "@/modules/auth/store";
 import { useCartStore } from "@/modules/cart/store";
-import { Container } from "@/shared/components/layout";
-import { Badge, Card } from "@/shared/components/ui";
+import { PageLoadingState } from "@/shared/components/feedback";
 
 type GuardProps = {
   children: ReactNode;
@@ -53,23 +52,12 @@ function GuardLoadingState({
   description: string;
 }) {
   return (
-    <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric">
-      <div className="aetheric-grid pointer-events-none absolute inset-0 opacity-30" />
-
-      <Container className="relative py-20">
-        <Card className="mx-auto max-w-2xl p-8 text-center">
-          <Badge variant="primary">{eyebrow}</Badge>
-
-          <h1 className="mt-6 font-display text-3xl font-bold text-foreground">
-            {title}
-          </h1>
-
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            {description}
-          </p>
-        </Card>
-      </Container>
-    </div>
+    <PageLoadingState
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+      variant="dashboard"
+    />
   );
 }
 

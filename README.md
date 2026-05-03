@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 26: favorites wishlist state.
+Commit 27: loading skeletons and refined states.
 
 ## Deployment
 
@@ -597,6 +597,28 @@ Zustand rule:
 
   * Select primitive values or stable references
   * Avoid selectors that create new objects or arrays on every render
+
+## Loading skeletons and refined states
+
+The app now includes a reusable premium loading state for route-level and feature-level loading experiences.
+
+Refined state behavior:
+
+  * Adds `PageLoadingState` as a shared loading skeleton component
+  * Supports catalog, detail, dashboard, form and default skeleton variants
+  * Reuses the loading state in product catalog and product detail
+  * Adds Suspense fallbacks for login, account, checkout and order success
+  * Reuses refined loading visuals in client-side guards
+  * Adds subtle glow decoration to empty states
+
+State components:
+
+    src/shared/components/feedback/page-loading-state.tsx
+    src/shared/components/feedback/empty-page-state.tsx
+
+Important UX rule:
+
+  * Loading states should preserve the expected page shape so transitions feel stable.
 
 ## Upcoming steps
 
