@@ -30,7 +30,9 @@ export function EmptyPageState({
       <div className="aetheric-grid pointer-events-none absolute inset-0 opacity-30" />
 
       <Container className="relative flex min-h-[calc(100vh-5rem)] items-center py-20">
-        <Card className="w-full overflow-hidden p-8 md:p-10">
+        <Card className="relative w-full overflow-hidden p-8 md:p-10">
+          <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 rounded-full bg-secondary/10 blur-3xl" />
+          <div className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 rounded-full bg-primary/10 blur-3xl" />
           <Badge className="mb-6">{eyebrow}</Badge>
 
           <h1 className="max-w-3xl font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">

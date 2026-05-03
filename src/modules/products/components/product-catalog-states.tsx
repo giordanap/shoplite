@@ -1,39 +1,20 @@
 import { routes } from "@/core/router/routes";
-import { Container, SectionHeader } from "@/shared/components/layout";
+import { Container } from "@/shared/components/layout";
+import { PageLoadingState } from "@/shared/components/feedback";
 import {
   Badge,
   ButtonLink,
   Card,
-  SkeletonBlock,
 } from "@/shared/components/ui";
 
 export function ProductCatalogLoadingState() {
   return (
-    <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric">
-      <div className="aetheric-grid pointer-events-none absolute inset-0 opacity-30" />
-
-      <Container className="relative py-20">
-        <SectionHeader
-          eyebrow="Products"
-          title="Loading premium catalog."
-          description="Fetching real product data from DummyJSON."
-        />
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-          <SkeletonBlock className="hidden h-[560px] lg:block" />
-
-          <div>
-            <SkeletonBlock className="h-28" />
-
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {Array.from({ length: 9 }).map((_, index) => (
-                <SkeletonBlock key={index} className="h-[430px]" />
-              ))}
-            </div>
-          </div>
-        </div>
-      </Container>
-    </div>
+    <PageLoadingState
+      eyebrow="Products"
+      title="Loading premium catalog."
+      description="Fetching real product data from DummyJSON with search, filters, sorting and pagination."
+      variant="catalog"
+    />
   );
 }
 
