@@ -1,20 +1,12 @@
-import { routes } from "@/core/router/routes";
-import { EmptyPageState } from "@/shared/components/feedback";
+import { Suspense } from "react";
+
+import { ProductDetailPageClient } from "@/modules/products/components/product-detail-page-client";
+import { ProductDetailLoadingState } from "@/modules/products/components/product-detail-states";
 
 export default function ProductDetailPage() {
   return (
-    <EmptyPageState
-      eyebrow="Product detail"
-      title="Product detail route is ready."
-      description="This page will later read the product id from the URL and render a premium product detail experience with gallery, price, rating, stock and add-to-cart actions."
-      primaryAction={{
-        label: "Back to products",
-        href: routes.products,
-      }}
-      secondaryAction={{
-        label: "Back to home",
-        href: routes.home,
-      }}
-    />
+    <Suspense fallback={<ProductDetailLoadingState />}>
+      <ProductDetailPageClient />
+    </Suspense>
   );
 }

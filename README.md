@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 16: sorting and pagination behavior.
+Commit 17: product detail page.
 
 ## Deployment
 
@@ -374,7 +374,28 @@ Supported query params:
 
 The UI keeps search, category, sort and page state synchronized with the URL.
 
+## Product detail page
+
+The product detail route now reads the product id from the URL:
+
+    /product?id=1
+
+Current product detail behavior:
+
+  * Reads the `id` query param from `/product`
+  * Fetches real product detail data from DummyJSON
+  * Renders product gallery, category, brand, rating, stock and price
+  * Shows discount, shipping, warranty and return policy information
+  * Shows a small reviews section when review data is available
+  * Handles missing id, loading and API error states
+
+Product detail files live in:
+
+    src/app/product/page.tsx
+    src/modules/products/components/product-detail-page-client.tsx
+    src/modules/products/components/product-detail.tsx
+    src/modules/products/components/product-detail-states.tsx
+
 ## Upcoming steps
 
-1. Build product detail page
-2. Build cart, checkout and account flows
+1. Build cart, checkout and account flows
