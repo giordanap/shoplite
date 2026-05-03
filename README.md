@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 11: TanStack Query setup.
+Commit 12: products list connected to DummyJSON.
 
 ## Deployment
 
@@ -237,8 +237,45 @@ src/core/query
 
 TanStack Query will be used for external API data such as products, product details, categories and demo auth.
 
+## Products list connected to DummyJSON
+
+The products route now fetches real products from DummyJSON.
+
+Current product data flow:
+
+```txt
+/products
+  ↓
+ProductsPageClient
+  ↓
+useProductsQuery
+  ↓
+productsService
+  ↓
+dummyJsonClient
+  ↓
+DummyJSON /products
+  ↓
+Product mappers
+  ↓
+Internal Product model
+```
+
+Current behavior:
+
+- Fetch products from DummyJSON
+- Map external DTOs into internal product models
+- Render a simple product grid
+- Show loading skeletons
+- Show API error state
+- Display basic pagination metadata
+- Link product cards to the product detail placeholder
+
 ## Upcoming steps
 
-1. Fetch products from DummyJSON
-2. Build premium product catalog layout
-3. Build cart, checkout and account flows
+1. Build premium product catalog layout
+2. Add product search and URL params
+3. Add categories and filters
+4. Add sorting and pagination behavior
+5. Build product detail page
+6. Build cart, checkout and account flows
