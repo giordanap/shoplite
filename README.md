@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 32: accessibility pass.
+Commit 33: performance pass.
 
 ## Deployment
 
@@ -747,6 +747,28 @@ Accessibility focus areas:
   * Dynamic action feedback
   * Loading and route landmarks
   * Reduced-motion compatibility
+
+## Performance pass
+
+The app now includes a first performance pass for the frontend-only commerce flow.
+
+Performance improvements:
+
+  * Adds optional Next.js bundle analyzer
+  * Adds `pnpm analyze` for local bundle inspection
+  * Reduces unnecessary TanStack Query refetches
+  * Lazy-loads the footer outside the critical path
+  * Keeps expensive `Intl` formatters outside render
+  * Memoizes account order summaries
+  * Keeps cart totals derived with `getCartTotals(items)` + `useMemo`
+  * Adds preconnect and dns-prefetch for DummyJSON
+  * Documents that Storybook mocks must not be imported by runtime app code
+
+Commands:
+
+    pnpm analyze
+    pnpm build
+    pnpm build-storybook
 
 ## Upcoming steps
 

@@ -34,6 +34,11 @@ export default function RootLayout({
       lang="en"
       className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://dummyjson.com" />
+        <link rel="dns-prefetch" href="https://dummyjson.com" />
+      </head>
+
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
         <AppProviders>
           <AppShell>{children}</AppShell>
