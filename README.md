@@ -1,29 +1,377 @@
 # ShopLite
 
-ShopLite is a premium frontend-only e-commerce demo built for a developer portfolio.
+ShopLite is a premium frontend-only e-commerce portfolio project built with Next.js, TypeScript, Tailwind CSS, TanStack Query, Zustand, Storybook and DummyJSON.
 
-The project will use:
+Live demo:
 
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
-- DummyJSON API
-- Zustand
-- TanStack Query
-- Storybook
-- GitHub Pages
+```txt
+https://giordanap.github.io/shoplite
+```
 
-## Goal
+Repository:
 
-Build a modern, visually impactful e-commerce experience without backend, API keys, payment processing, or private data.
+```txt
+https://github.com/giordanap/shoplite
+```
 
-## Current step
+## Overview
 
-Commit 33: performance pass.
+ShopLite demonstrates a complete commerce-style frontend experience without a backend, private API keys, real authentication or real payment processing.
 
-## Deployment
+The goal is to show production-minded frontend engineering through:
 
-This project is deployed to GitHub Pages under the `/shoplite` subpath.
+* Feature-based architecture
+* Real API integration
+* URL-driven catalog behavior
+* Client-side state persistence
+* Demo authentication
+* Demo checkout and local order creation
+* Responsive UI
+* Accessibility improvements
+* Performance considerations
+* Storybook documentation
+
+## Tech stack
+
+* Next.js App Router
+* TypeScript
+* Tailwind CSS
+* TanStack Query
+* Zustand
+* DummyJSON API
+* Storybook
+* GitHub Pages
+* Static export
+
+## Project direction
+
+ShopLite follows a dark premium visual direction:
+
+* Aetheric commerce
+* Digital luxury
+* Glass surfaces
+* Electric violet accents
+* Neon cyan highlights
+* Accent pink details
+* Glow shadows
+* Premium typography
+* Subtle microinteractions
+
+## Main features
+
+### Home page
+
+* Premium hero section
+* Commerce positioning
+* Featured product preview
+* Category highlights
+* Benefits section
+* Portfolio-focused demo messaging
+
+### Product catalog
+
+* Real products from DummyJSON
+* URL-driven search
+* URL-driven category filtering
+* URL-driven sorting
+* URL-driven pagination
+* Custom premium sort dropdown
+* Product cards with price, rating, stock, discount and actions
+* Loading, error and empty states
+
+Example URLs:
+
+```txt
+/products
+/products?q=phone
+/products?category=smartphones
+/products?page=2
+/products?sortBy=price&order=asc
+/products?q=phone&page=2
+```
+
+### Product detail
+
+* Product detail fetched from DummyJSON
+* Product gallery
+* Price and discount display
+* Rating, stock, category and brand
+* Shipping, warranty and return policy
+* Reviews section
+* Add to cart action
+* Wishlist action
+
+Example URL:
+
+```txt
+/product?id=1
+```
+
+### Cart
+
+* Zustand cart store
+* localStorage persistence
+* Product snapshots instead of raw API responses
+* Add, increase, decrease, remove and clear actions
+* Real cart badge in the header
+* Premium cart page
+* Order summary
+* Discount summary
+* Frontend-only checkout disclaimer
+
+Cart storage key:
+
+```txt
+shoplite-cart-v1
+```
+
+### Checkout demo
+
+* Frontend-only checkout flow
+* Contact information form
+* Delivery address form
+* Standard and express delivery options
+* Simulated payment section
+* Sticky checkout summary
+* Local order creation
+* No real payment processing
+
+### Local orders
+
+* Orders are created locally in localStorage
+* Checkout creates a local order before clearing the cart
+* Success page reads the order by `orderId`
+* Order confirmation shows customer, items, delivery and totals
+
+Storage keys:
+
+```txt
+shoplite-orders-v1
+shoplite-latest-order-id-v1
+```
+
+Example success URL:
+
+```txt
+/order-success?orderId=SL-...
+```
+
+### Demo authentication
+
+* Frontend-only demo login
+* Zustand auth store
+* localStorage persistence
+* Account dashboard protected by client-side guards
+* No real credentials are sent anywhere
+
+Auth storage key:
+
+```txt
+shoplite-auth-v1
+```
+
+Demo credentials:
+
+```txt
+Email: demo@shoplite.dev
+Password: shoplite-demo
+```
+
+Any email and a password with at least 4 characters can create a demo session.
+
+### Account dashboard
+
+* Demo profile information
+* Session metadata
+* Cart stats
+* Wishlist stats
+* Local order history
+* Recent orders
+* Cart preview
+* Wishlist preview
+* Logout action
+
+### Wishlist
+
+* Zustand wishlist store
+* localStorage persistence
+* Toggle favorites from product cards
+* Toggle favorites from product detail
+* Wishlist preview in account dashboard
+* Remove favorites from account dashboard
+
+Storage key:
+
+```txt
+shoplite-favorites-v1
+```
+
+### Client-side guards
+
+The app includes frontend-only guards for demo flows:
+
+* `/account` requires a local demo session
+* `/checkout` requires a local demo session and cart items
+* `/login` redirects authenticated demo users to account
+* Login supports safe `next` redirects
+
+Example:
+
+```txt
+/checkout
+↓
+/login?next=%2Fcheckout
+↓
+/checkout
+```
+
+### Responsive experience
+
+The app includes responsive refinements for:
+
+* Mobile header menu
+* Product toolbar
+* Product cards
+* Product detail
+* Cart page
+* Checkout page
+* Account dashboard
+* Loading skeletons
+
+Target breakpoints:
+
+```txt
+Mobile: 360px+
+Large phone: 420px+
+Tablet: 640px+
+Desktop: 1024px+
+Wide desktop: 1440px+
+```
+
+### Accessibility pass
+
+Accessibility improvements include:
+
+* Skip link to main content
+* Main landmark with `id="main-content"`
+* Screen-reader utility styles
+* Better icon button labels
+* Cart badge semantics
+* Polite live regions for add-to-cart and wishlist feedback
+* Keyboard behavior for custom sort dropdown
+* `aria-invalid` for login validation
+* `aria-busy` for loading states
+* Reduced motion support
+
+### Performance pass
+
+Performance improvements include:
+
+* Static export for GitHub Pages
+* Optional bundle analyzer
+* Reduced TanStack Query refetches
+* Lazy-loaded footer
+* Shared `Intl` formatters outside render
+* Memoized derived totals and summaries
+* Preconnect and DNS prefetch for DummyJSON
+* Runtime app code separated from Storybook mocks
+
+### Storybook
+
+Storybook documents shared UI and commerce components.
+
+Commands:
+
+```bash
+pnpm storybook
+pnpm build-storybook
+```
+
+Story coverage:
+
+* Button
+* Badge
+* Card
+* PageLoadingState
+* AddToCartButton
+* FavoriteToggleButton
+* ProductCard
+* ProductDetail
+
+Storybook includes:
+
+* Dark premium background
+* Global ShopLite styles
+* Commerce state fixtures
+* Product mocks
+* Design system notes
+
+## Architecture
+
+ShopLite follows a feature-based frontend architecture.
+
+```txt
+src/
+  app/
+    Next.js routes, layouts and providers
+
+  core/
+    API clients, HTTP helpers, errors, query config, router helpers,
+    pagination utilities and infrastructure code
+
+  modules/
+    Business features such as home, products, cart, checkout,
+    auth, account, orders and favorites
+
+  shared/
+    Reusable UI, layout components, feedback states, guards,
+    constants, Storybook helpers and utilities
+```
+
+Main rules:
+
+1. Pages compose feature modules.
+2. Feature modules own business UI and hooks.
+3. Core owns infrastructure.
+4. Shared owns reusable UI and utilities.
+5. UI consumes internal models, not raw API DTOs.
+
+## Important implementation patterns
+
+### Zustand derived state
+
+Avoid Zustand selectors that return new objects on every render.
+
+Do this:
+
+```ts
+const items = useCartStore((state) => state.items);
+const totals = useMemo(() => getCartTotals(items), [items]);
+```
+
+Avoid this:
+
+```ts
+const totals = useCartStore(selectCartTotals);
+```
+
+The second version can trigger:
+
+```txt
+The result of getSnapshot should be cached to avoid an infinite loop
+```
+
+### LocalStorage snapshots
+
+Local order state uses primitive snapshots with `useSyncExternalStore` to avoid unstable render snapshots.
+
+### GitHub Pages base path
+
+Production runs under:
+
+```txt
+/shoplite
+```
 
 Production uses:
 
@@ -37,227 +385,160 @@ Local development uses an empty base path:
 NEXT_PUBLIC_BASE_PATH=
 ```
 
-Any local asset inside `/public` must be referenced using the `withBasePath()` helper instead of hardcoded root paths like `/logo.svg`.
+Internal links and public assets must respect the base path helper when needed.
 
-## Architecture
-
-The project follows a feature-based frontend architecture.
+## Routes
 
 ```txt
-src/
-  app/
-    Next.js routes and layouts
-
-  core/
-    Framework-agnostic infrastructure:
-    API clients, HTTP helpers, query config, storage, router helpers,
-    pagination utilities and shared error types.
-
-  modules/
-    Business features:
-    home, products, cart, checkout, auth and account.
-
-  shared/
-    Reusable UI, layout components, feedback states, hooks, constants and utilities.
-```
-
-The main principles are:
-
-1. Pages compose features.
-2. Features own their business UI and hooks.
-3. Core owns infrastructure.
-4. Shared owns reusable UI and utilities.
-
-## Visual foundation
-
-The visual foundation is inspired by the Stitch premium UI direction:
-
-- Dark aetheric background
-- Electric violet primary accent
-- Neon cyan secondary accent
-- Glass-like surfaces
-- Gradient highlights
-- Glow shadows
-- Premium display typography
-- Reusable CSS tokens
-
-Design tokens live in:
-
-```txt
-src/app/globals.css
-src/shared/constants/design-tokens.ts
-```
-
-## Shared UI primitives
-
-Reusable UI primitives live in:
-
-```txt
-src/shared/components/ui
-src/shared/components/layout
-src/shared/utils
-```
-
-Current primitives:
-
-- Button
-- ButtonLink
-- Card
-- Badge
-- Input
-- IconButton
-- SkeletonBlock
-- Container
-- SectionHeader
-
-## App shell
-
-The app shell defines the global structure used by all pages.
-
-Current shell pieces:
-
-- Sticky header
-- Logo
-- Main navigation
-- Cart placeholder action
-- Account placeholder action
-- Mobile navigation row
-- Footer navigation groups
-- Portfolio/demo badges
-
-Shell files live in:
-
-```txt
-src/shared/components/layout
-src/shared/constants/navigation.ts
-```
-
-## Premium home page
-
-The home page now follows the premium Stitch-inspired direction with:
-
-- Hero section
-- Featured product preview
-- Category cards
-- Product preview cards
-- Benefits section
-- Newsletter/next milestone section
-- Internal links prepared for GitHub Pages subpath deployment
-
-Home page files live in:
-
-```txt
-src/app/page.tsx
-src/modules/home/components/home-page.tsx
-```
-
-## Core routes
-
-The main application routes now exist as static pages:
-
-```txt
+/
 /products
 /product?id=1
 /cart
 /checkout
 /login
 /account
-/order-success
+/order-success?orderId=SL-...
 ```
 
-## DummyJSON API client foundation
+## Local development
 
-The API foundation prepares the app to consume DummyJSON through a controlled internal client.
+Install dependencies:
 
-Current API foundation:
-
-- `fetchClient` wrapper
-- Query string builder
-- HTTP error normalization
-- Network error normalization
-- Timeout handling
-- DummyJSON base client
-- DummyJSON endpoint registry
-
-Files live in:
-
-```txt
-src/core/http
-src/core/errors
-src/core/api/dummyjson
+```bash
+pnpm install
 ```
 
-## Product models and mappers
+Run development server:
 
-The products module now separates external API DTOs from internal app models.
-
-Current product modeling pieces:
-
-- DummyJSON product DTOs
-- Internal `Product` domain model
-- Product category model
-- Product filters model
-- Product availability status
-- Product image model
-- Product review model
-- Pagination model
-- DummyJSON product mapper
-- DummyJSON products response mapper
-
-Files live in:
-
-```txt
-src/core/pagination
-src/modules/products/types
-src/modules/products/mappers
+```bash
+pnpm dev
 ```
 
-The UI should consume internal product models, not raw DummyJSON responses.
+Run lint:
 
-## TanStack Query setup
-
-TanStack Query is now configured as the server-state layer for the app.
-
-Current query setup:
-
-- `QueryClientProvider`
-- App-level providers wrapper
-- Query client factory
-- Default query options
-- Query key registry
-- Product query keys
-- Auth query keys
-
-Files live in:
-
-```txt
-src/app/providers.tsx
-src/core/query
+```bash
+pnpm lint
 ```
 
-TanStack Query will be used for external API data such as products, product details, categories and demo auth.
+Run production build:
 
-## Products list connected to DummyJSON
+```bash
+pnpm build
+```
 
-The products route now fetches real products from DummyJSON.
+Run Storybook:
 
-Current product data flow:
+```bash
+pnpm storybook
+```
+
+Build Storybook:
+
+```bash
+pnpm build-storybook
+```
+
+Analyze bundle:
+
+```bash
+pnpm analyze
+```
+
+## Validation checklist
+
+Before opening a PR:
+
+```bash
+pnpm lint
+pnpm build
+pnpm build-storybook
+git status
+git diff --stat
+```
+
+Manual routes to verify:
 
 ```txt
-/products
-  ↓
-ProductsPageClient
-  ↓
-useProductsQuery
-  ↓
-productsService
-  ↓
-dummyJsonClient
-  ↓
-DummyJSON /products
-  ↓
-Product mappers
-  ↓
+http://localhost:3000/
+http://localhost:3000/products
+http://localhost:3000/product?id=1
+http://localhost:3000/cart
+http://localhost:3000/checkout
+http://localhost:3000/login
+http://localhost:3000/account
+http://localhost:3000/order-success
+```
+
+Manual flow:
+
+1. Search products.
+2. Filter by category.
+3. Sort products.
+4. Paginate catalog.
+5. Open product detail.
+6. Add product to cart.
+7. Save product to wishlist.
+8. Open cart and edit quantities.
+9. Login with demo account.
+10. Complete checkout demo.
+11. Confirm order success page.
+12. Open account dashboard.
+13. Verify order history, cart preview and wishlist preview.
+
+## Deployment
+
+The app is deployed to GitHub Pages with static export.
+
+Production URL:
+
+```txt
+https://giordanap.github.io/shoplite
+```
+
+Required production environment variable:
+
+```txt
+NEXT_PUBLIC_BASE_PATH=/shoplite
+```
+
+After merging to `main`, verify:
+
+```txt
+https://giordanap.github.io/shoplite
+https://giordanap.github.io/shoplite/products
+https://giordanap.github.io/shoplite/product?id=1
+https://giordanap.github.io/shoplite/cart
+https://giordanap.github.io/shoplite/login
+```
+
+## Portfolio notes
+
+This project is designed to demonstrate:
+
+* Frontend architecture
+* UI composition
+* API integration
+* Server-state management
+* Client-state persistence
+* URL state management
+* Static deployment constraints
+* Accessibility awareness
+* Performance awareness
+* Storybook documentation
+* Commerce flow thinking
+
+It intentionally avoids:
+
+* Real payments
+* Real authentication
+* Backend secrets
+* Private API keys
+* Sensitive user data
+* Server-side order persistence
+
+## Final status
+
+ShopLite is a complete frontend-only portfolio commerce demo. It includes catalog, product detail, cart, checkout, local order confirmation, demo login, account dashboard, wishlist, client-side guards, responsive UI, accessibility pass, performance pass and Storybook documentation.
 Internal Product model
 ```
 
