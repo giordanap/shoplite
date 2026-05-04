@@ -19,9 +19,38 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "ShopLite | Premium E-commerce Demo",
+  title: {
+    default: "ShopLite | Premium Frontend Commerce Demo",
+    template: "%s | ShopLite",
+  },
   description:
-    "Frontend-only premium e-commerce demo built with Next.js, Tailwind CSS and DummyJSON.",
+    "Frontend-only premium e-commerce portfolio demo built with Next.js, TypeScript, Tailwind CSS, TanStack Query, Zustand, Storybook and DummyJSON.",
+  applicationName: "ShopLite",
+  authors: [
+    {
+      name: "Giordan Apaza",
+      url: "https://github.com/giordanap",
+    },
+  ],
+  creator: "Giordan Apaza",
+  keywords: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Zustand",
+    "TanStack Query",
+    "Storybook",
+    "Frontend Portfolio",
+    "E-commerce Demo",
+  ],
+  openGraph: {
+    title: "ShopLite | Premium Frontend Commerce Demo",
+    description:
+      "A premium frontend-only commerce portfolio project with catalog, cart, checkout, local orders, demo auth, wishlist, accessibility and Storybook.",
+    url: "https://giordanap.github.io/shoplite",
+    siteName: "ShopLite",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

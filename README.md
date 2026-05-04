@@ -306,6 +306,14 @@ Storybook includes:
 * Product mocks
 * Design system notes
 
+## Release notes
+
+See:
+
+```txt
+docs/RELEASE_NOTES.md
+```
+
 ## Architecture
 
 ShopLite follows a feature-based frontend architecture.
@@ -454,6 +462,14 @@ pnpm build
 pnpm build-storybook
 git status
 git diff --stat
+```
+
+Final release validation:
+
+```bash
+pnpm lint
+pnpm build
+pnpm build-storybook
 ```
 
 Manual routes to verify:
