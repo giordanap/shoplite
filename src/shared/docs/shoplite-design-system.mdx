@@ -34,3 +34,15 @@ Storybook is used as a visual documentation layer for the reusable UI system. It
 ## Frontend-only constraint
 
 ShopLite does not use real payments, backend secrets or private API keys. Any checkout, auth or order flow is intentionally simulated for portfolio purposes.
+
+## Microinteractions
+
+ShopLite uses subtle motion to make the commerce flow feel more premium:
+
+- `interactive-lift` for clickable cards
+- `interactive-press` for buttons
+- `soft-border-glow` for premium product surfaces
+- `skeleton-shimmer` for loading states
+- reduced motion support through `prefers-reduced-motion`
+
+Motion should be subtle and should not block usability.

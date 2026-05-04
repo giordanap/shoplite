@@ -17,7 +17,11 @@ type CardProps = ComponentPropsWithoutRef<"div"> & {
 export function Card({ className, variant = "glass", ...props }: CardProps) {
   return (
     <div
-      className={cn("rounded-card p-5", variantClasses[variant], className)}
+      className={cn(
+        "rounded-card p-5 transition duration-200",
+        variantClasses[variant],
+        className,
+      )}
       {...props}
     />
   );

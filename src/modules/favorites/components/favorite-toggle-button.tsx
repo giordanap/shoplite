@@ -32,7 +32,12 @@ export function FavoriteToggleButton({
       variant={isFavorite ? "secondary" : "outline"}
       size={compact ? "sm" : "md"}
       onClick={handleToggleFavorite}
-      className={cn("whitespace-nowrap", className)}
+      className={cn(
+        "transition duration-200",
+        isFavorite ? "shadow-[0_0_28px_rgba(34,211,238,0.16)]" : "",
+        "whitespace-nowrap",
+        className,
+      )}
       aria-pressed={isFavorite}
       aria-label={
         isFavorite
@@ -40,7 +45,15 @@ export function FavoriteToggleButton({
           : `Add ${product.name} to favorites`
       }
     >
-      <span aria-hidden="true">{isFavorite ? "♥" : "♡"}</span>
+      <span
+        aria-hidden="true"
+        className={cn(
+          "inline-block transition duration-200",
+          isFavorite ? "scale-110 text-accent" : "text-muted-foreground",
+        )}
+      >
+        {isFavorite ? "♥" : "♡"}
+      </span>
       {compact ? null : isFavorite ? "Saved" : "Wishlist"}
     </Button>
   );

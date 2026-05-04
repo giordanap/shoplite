@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 30: Storybook stories for commerce components.
+Commit 31: visual polish and microinteractions.
 
 ## Deployment
 
@@ -697,7 +697,32 @@ Testing utilities:
 
 The Storybook fixtures seed Zustand cart and wishlist state per story without relying on backend data.
 
+## Visual polish and microinteractions
+
+The app now includes subtle visual polish across shared UI and commerce components.
+
+Polish added:
+
+  * Global microinteraction utilities
+  * Button press feedback
+  * Product card lift and premium glow
+  * Skeleton shimmer loading effect
+  * Add to cart temporary success feedback
+  * Favorite heart visual transition
+  * Selected favorite glow state
+  * Reduced motion support
+
+Files touched:
+
+    src/app/globals.css
+    src/shared/components/ui/button.tsx
+    src/shared/components/ui/card.tsx
+    src/shared/components/ui/skeleton-block.tsx
+    src/modules/products/components/product-card.tsx
+    src/modules/cart/components/add-to-cart-button.tsx
+    src/modules/favorites/components/favorite-toggle-button.tsx
+
 ## Upcoming steps
 
-1. Add checkout/account Storybook stories
-2. Add final portfolio README documentation
+1. Add final portfolio README documentation
+2. Prepare deploy verification checklist

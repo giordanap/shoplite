@@ -8,7 +8,7 @@ type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-primary-gradient text-primary-foreground shadow-aetheric hover:scale-[1.02]",
+    "bg-primary-gradient text-primary-foreground shadow-aetheric hover:scale-[1.02] hover:shadow-cyan",
   secondary:
     "border border-secondary/40 bg-secondary/10 text-secondary hover:border-secondary hover:bg-secondary/15",
   ghost: "text-muted-foreground hover:bg-white/5 hover:text-foreground",
@@ -53,7 +53,7 @@ export function buttonVariants({
   className?: string;
 } = {}) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-button font-bold transition duration-200",
+    "interactive-press inline-flex items-center justify-center gap-2 rounded-button font-bold transition duration-200",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring",
     "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
     variantClasses[variant],
