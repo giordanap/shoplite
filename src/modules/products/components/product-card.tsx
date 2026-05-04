@@ -41,8 +41,9 @@ export function ProductCard({ product }: ProductCardProps) {
   const hasDiscount = product.discountPercent > 0;
 
   return (
-    <Card className="group overflow-hidden p-4 transition duration-300 hover:-translate-y-1 hover:border-secondary/40">
+    <Card className="interactive-lift soft-border-glow group overflow-hidden p-4 hover:border-secondary/40 hover:shadow-cyan">
       <div className="relative grid aspect-[4/3] place-items-center overflow-hidden rounded-card border border-border-subtle bg-card-gradient">
+        <div className="pointer-events-none absolute inset-0 bg-primary-gradient opacity-0 blur-2xl transition duration-300 group-hover:opacity-10" />
         {hasDiscount ? (
           <Badge
             variant="accent"

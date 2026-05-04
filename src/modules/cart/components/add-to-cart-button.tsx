@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 import type { Product } from "@/modules/products/types";
 import { Button } from "@/shared/components/ui";
 import { cn } from "@/shared/utils";
@@ -51,14 +53,34 @@ export function AddToCartButton({
         state.items.find((item) => item.product.id === product.id)?.quantity,
     ) ?? 0;
 
+  const [wasAdded, setWasAdded] = useState(false);
+  const feedbackTimeoutRef = useRef<number | null>(null);
+
   const isOutOfStock =
     product.availabilityStatus === "out-of-stock" || product.stock <= 0;
 
   const isStockLimitReached = quantity >= product.stock;
   const isDisabled = isOutOfStock || isStockLimitReached;
 
+  useEffect(() => {
+    return () => {
+      if (feedbackTimeoutRef.current) {
+        window.clearTimeout(feedbackTimeoutRef.current);
+      }
+    };
+  }, []);
+
   function handleAddToCart() {
     addProduct(product);
+    setWasAdded(true);
+
+    if (feedbackTimeoutRef.current) {
+      window.clearTimeout(feedbackTimeoutRef.current);
+    }
+
+    feedbackTimeoutRef.current = window.setTimeout(() => {
+      setWasAdded(false);
+    }, 1100);
   }
 
   return (
@@ -68,12 +90,16 @@ export function AddToCartButton({
       onClick={handleAddToCart}
       className={cn("whitespace-nowrap", className)}
     >
-      {getButtonLabel({
-        compact,
-        quantity,
-        stock: product.stock,
-        isOutOfStock,
-      })}
+      {wasAdded
+        ? compact
+          ? "Added"
+          : "Added to cart"
+        : getButtonLabel({
+            compact,
+            quantity,
+            stock: product.stock,
+            isOutOfStock,
+          })}
     </Button>
   );
 }

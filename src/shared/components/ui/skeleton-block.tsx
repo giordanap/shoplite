@@ -8,7 +8,7 @@ export function SkeletonBlock({ className, ...props }: SkeletonBlockProps) {
   return (
     <div
       className={cn(
-        "animate-pulse rounded-card border border-border-subtle bg-white/[0.06]",
+        "skeleton-shimmer animate-pulse rounded-card border border-border-subtle bg-white/[0.06]",
         className,
       )}
       aria-hidden="true"

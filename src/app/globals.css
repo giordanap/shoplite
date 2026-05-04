@@ -125,7 +125,7 @@ body {
   }
 
   .bg-card-gradient {
-  background-image: var(--gradient-card);
+    background-image: var(--gradient-card);
   }
 
   .bg-primary-gradient {
@@ -156,5 +156,94 @@ body {
 
   .text-balance {
     text-wrap: balance;
+  }
+
+  .interactive-lift {
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .interactive-lift:hover {
+    transform: translateY(-3px);
+  }
+
+  .interactive-press {
+    transition:
+      transform 160ms ease,
+      opacity 160ms ease;
+  }
+
+  .interactive-press:active {
+    transform: scale(0.98);
+  }
+
+  .premium-glow {
+    box-shadow:
+      0 24px 80px rgba(124, 58, 237, 0.18),
+      0 12px 42px rgba(34, 211, 238, 0.1);
+  }
+
+  .soft-border-glow {
+    position: relative;
+  }
+
+  .soft-border-glow::before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)) padding-box,
+      linear-gradient(135deg, rgba(167, 139, 250, 0.45), rgba(34, 211, 238, 0.25), rgba(244, 114, 182, 0.25)) border-box;
+    opacity: 0;
+    transition: opacity 220ms ease;
+  }
+
+  .soft-border-glow:hover::before {
+    opacity: 1;
+  }
+
+  .skeleton-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skeleton-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    );
+    animation: shimmer 1.7s infinite;
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .interactive-lift,
+    .interactive-press,
+    .skeleton-shimmer::after {
+      transition: none;
+      animation: none;
+      transform: none;
+    }
+
+    .interactive-lift:hover {
+      transform: none;
+    }
   }
 }
