@@ -118,7 +118,10 @@ export function PageLoadingState({
   variant = "default",
 }: PageLoadingStateProps) {
   return (
-    <div className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric">
+    <div
+      className="relative min-h-[calc(100vh-5rem)] overflow-hidden bg-aetheric"
+      aria-busy="true"
+    >
       <div className="aetheric-grid pointer-events-none absolute inset-0 opacity-30" />
 
       <Container className="relative py-20">
@@ -128,6 +131,10 @@ export function PageLoadingState({
             title={title}
             description={description}
           />
+
+          <span className="sr-only" role="status">
+            {title}
+          </span>
 
           <Badge variant="primary">Loading</Badge>
         </div>

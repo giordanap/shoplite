@@ -19,7 +19,7 @@ Build a modern, visually impactful e-commerce experience without backend, API ke
 
 ## Current step
 
-Commit 31: visual polish and microinteractions.
+Commit 32: accessibility pass.
 
 ## Deployment
 
@@ -721,6 +721,32 @@ Files touched:
     src/modules/products/components/product-card.tsx
     src/modules/cart/components/add-to-cart-button.tsx
     src/modules/favorites/components/favorite-toggle-button.tsx
+
+## Accessibility pass
+
+The app now includes a first accessibility pass across layout, commerce actions and interactive states.
+
+Accessibility improvements:
+
+  * Adds a skip link to main content
+  * Adds `id="main-content"` to the main landmark
+  * Adds screen-reader utility styles
+  * Improves mobile navigation aria controls
+  * Improves cart badge semantics
+  * Adds polite live feedback for add-to-cart and wishlist actions
+  * Adds better keyboard behavior to the custom sort dropdown
+  * Adds article semantics to product cards
+  * Adds `aria-invalid` to login validation fields
+  * Adds `aria-busy` to route-level loading states
+  * Documents accessibility rules in Storybook docs
+
+Accessibility focus areas:
+
+  * Keyboard navigation
+  * Screen reader labels
+  * Dynamic action feedback
+  * Loading and route landmarks
+  * Reduced-motion compatibility
 
 ## Upcoming steps
 

@@ -55,6 +55,12 @@ export function FavoriteToggleButton({
         {isFavorite ? "♥" : "♡"}
       </span>
       {compact ? null : isFavorite ? "Saved" : "Wishlist"}
+
+      <span className="sr-only" aria-live="polite">
+        {isFavorite
+          ? `${product.name} is saved to favorites`
+          : `${product.name} is not saved to favorites`}
+      </span>
     </Button>
   );
 }

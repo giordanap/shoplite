@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { KeyboardEvent, useEffect, useId, useRef, useState } from "react";
 
 import { Badge, Button, Input } from "@/shared/components/ui";
 
@@ -110,6 +110,18 @@ export function ProductToolbar({
     onSortChange(nextSortBy, nextOrder);
   }
 
+  function handleSortButtonKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
+    if (event.key === "Escape") {
+      setIsSortMenuOpen(false);
+      return;
+    }
+
+    if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsSortMenuOpen(true);
+    }
+  }
+
   useEffect(() => {
     return () => {
       if (debounceTimeoutRef.current) {
@@ -188,11 +200,7 @@ export function ProductToolbar({
               aria-controls={sortMenuId}
               aria-label="Sort products"
               onClick={() => setIsSortMenuOpen((isOpen) => !isOpen)}
-              onKeyDown={(event) => {
-                if (event.key === "Escape") {
-                  setIsSortMenuOpen(false);
-                }
-              }}
+              onKeyDown={handleSortButtonKeyDown}
             >
               <span>{getSortOptionLabel(selectedSortValue)}</span>
 
@@ -210,6 +218,7 @@ export function ProductToolbar({
               <div
                 id={sortMenuId}
                 role="listbox"
+                aria-label="Sort products options"
                 className="absolute right-0 z-40 mt-2 w-full overflow-hidden rounded-card border border-border-subtle bg-surface-elevated/95 p-1 shadow-aetheric backdrop-blur-xl"
               >
                 {sortOptions.map((option) => {
@@ -229,6 +238,11 @@ export function ProductToolbar({
                       onClick={() => {
                         handleSortChange(option.value);
                         setIsSortMenuOpen(false);
+                      }}
+                      onKeyDown={(event) => {
+                        if (event.key === "Escape") {
+                          setIsSortMenuOpen(false);
+                        }
                       }}
                     >
                       <span>{option.label}</span>

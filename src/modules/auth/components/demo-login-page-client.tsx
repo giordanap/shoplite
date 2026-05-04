@@ -192,6 +192,7 @@ export function DemoLoginPageClient() {
                     }
                     placeholder="demo@shoplite.dev"
                     autoComplete="email"
+                    aria-invalid={hasSubmitted && formState.email.trim().length === 0}
                   />
 
                   {hasSubmitted && formState.email.trim().length === 0 ? (
@@ -214,6 +215,7 @@ export function DemoLoginPageClient() {
                     }
                     placeholder="shoplite-demo"
                     autoComplete="current-password"
+                    aria-invalid={hasSubmitted && formState.password.trim().length < 4}
                   />
 
                   {hasSubmitted && formState.password.trim().length < 4 ? (

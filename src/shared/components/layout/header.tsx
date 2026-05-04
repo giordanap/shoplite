@@ -52,7 +52,7 @@ export function Header() {
           <Link
             href={routes.account}
             className="hidden size-10 items-center justify-center rounded-button border border-border-subtle bg-white/[0.03] text-foreground transition hover:border-border-strong hover:bg-white/[0.06] sm:inline-flex"
-            aria-label="Open account"
+            aria-label="Open account dashboard"
           >
             <span aria-hidden="true">👤</span>
           </Link>
@@ -62,6 +62,7 @@ export function Header() {
             variant="outline"
             aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
           >
             <span aria-hidden="true">{isMobileMenuOpen ? "✕" : "☰"}</span>
@@ -71,7 +72,11 @@ export function Header() {
 
       {isMobileMenuOpen ? (
         <div className="border-t border-border-subtle bg-background/95 px-4 py-4 shadow-aetheric backdrop-blur-xl md:hidden">
-          <nav className="mx-auto grid max-w-6xl gap-2" aria-label="Mobile navigation">
+          <nav
+            id="mobile-navigation"
+            className="mx-auto grid max-w-6xl gap-2"
+            aria-label="Mobile navigation"
+          >
             {mainNavigationItems.map((item) => (
               <Link
                 key={item.label}

@@ -46,3 +46,16 @@ ShopLite uses subtle motion to make the commerce flow feel more premium:
 - reduced motion support through `prefers-reduced-motion`
 
 Motion should be subtle and should not block usability.
+
+## Accessibility
+
+ShopLite accessibility rules:
+
+- Every icon-only action needs an accessible name.
+- Route-level pages expose a main landmark through `#main-content`.
+- A skip link is available for keyboard users.
+- Loading screens expose `aria-busy`.
+- Dynamic cart and wishlist feedback uses polite live regions.
+- Form validation states expose `aria-invalid`.
+- Custom dropdowns must support keyboard open/close and clear roles.
+- Reduced motion is respected through `prefers-reduced-motion`.

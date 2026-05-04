@@ -23,8 +23,15 @@ export function CartLink() {
     >
       <span aria-hidden="true">🛒</span>
 
-      <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-primary text-[0.65rem] font-black text-primary-foreground">
+      <span
+        className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-primary text-[0.65rem] font-black text-primary-foreground"
+        aria-hidden="true"
+      >
         {formatCartCount(itemCount)}
+      </span>
+
+      <span className="sr-only">
+        {itemCount === 1 ? "1 item in cart" : `${itemCount} items in cart`}
       </span>
     </Link>
   );
