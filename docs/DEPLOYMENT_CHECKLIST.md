@@ -133,3 +133,30 @@ Use the base path helper when needed.
 * Portfolio case study updated
 * Deployment checklist updated
 * GitHub Pages deploy verified
+
+## Final release validation
+
+Before merging the final release PR:
+
+- Confirm `pnpm lint` passes
+- Confirm `pnpm build` passes
+- Confirm `pnpm build-storybook` passes
+- Confirm no generated analyzer files are staged
+- Confirm `.env.example` exists
+- Confirm README points to the live GitHub Pages URL
+- Confirm case study is updated
+- Confirm release notes are updated
+- Confirm GitHub Actions deploy succeeds after merge
+
+## Post-merge verification
+
+After merging to `main`, verify:
+
+```txt
+https://giordanap.github.io/shoplite
+https://giordanap.github.io/shoplite/products
+https://giordanap.github.io/shoplite/product?id=1
+https://giordanap.github.io/shoplite/cart
+https://giordanap.github.io/shoplite/login
+https://giordanap.github.io/shoplite/account
+```
