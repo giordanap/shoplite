@@ -100,6 +100,10 @@ export function AddToCartButton({
             stock: product.stock,
             isOutOfStock,
           })}
+
+      <span className="sr-only" aria-live="polite">
+        {wasAdded ? `${product.name} added to cart` : ""}
+      </span>
     </Button>
   );
 }

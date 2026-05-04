@@ -158,6 +158,36 @@ body {
     text-wrap: balance;
   }
 
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-width: 0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .skip-link {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 9999;
+    transform: translateY(-150%);
+    border-radius: var(--radius-button);
+    background: var(--foreground);
+    color: var(--background);
+    padding: 0.75rem 1rem;
+    font-weight: 800;
+    transition: transform 160ms ease;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
   .interactive-lift {
     transition:
       transform 220ms ease,
