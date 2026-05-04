@@ -69,10 +69,11 @@ export function AccountDashboardPageClient() {
     [ordersSnapshot],
   );
 
-  const recentOrders = orders.slice(0, 3);
-  const lifetimeValue = orders.reduce(
-    (total, order) => total + order.totals.total,
-    0,
+  const recentOrders = useMemo(() => orders.slice(0, 3), [orders]);
+
+  const lifetimeValue = useMemo(
+    () => orders.reduce((total, order) => total + order.totals.total, 0),
+    [orders],
   );
 
   function handleLogout() {
